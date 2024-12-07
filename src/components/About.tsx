@@ -1,8 +1,6 @@
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "../utils/animations";
 
-
-
 export default function About() {
   return (
     <section id="about" className="py-20 bg-white">
@@ -37,10 +35,17 @@ export default function About() {
 
           <motion.div className="space-y-6" variants={staggerContainer}>
             <motion.p className="text-lg text-gray-600" variants={fadeInUp}>
-              Hi, I'm Abiram, an aspiring software developer with a passion for
-              learning and building impactful solutions. Currently, I am working
-              as an intern at Brototype for the past 6 months, where I am honing
-              my skills and gaining valuable industry experience.
+              - An independent and self-motivated hardworking individual
+              dedicated towards goals!
+            </motion.p>
+            <motion.p className="text-lg text-gray-600" variants={fadeInUp}>
+              Hi, I'm Abiram, an aspiring software developer with a strong
+              passion for learning and building impactful solutions. I am
+              currently working as an intern at Brototype, where I'm gaining
+              valuable industry experience and honing my technical skills.
+              Additionally, I am a self-taught developer, continuously learning
+              new technologies and refining my expertise to stay ahead in the
+              ever-evolving tech industry.
             </motion.p>
 
             <motion.p className="text-lg text-gray-600" variants={fadeInUp}>
@@ -69,4 +74,3 @@ export default function About() {
     </section>
   );
 }
-
