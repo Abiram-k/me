@@ -24,6 +24,15 @@ const projectsData: ProjectItem[] = [
     github: "https://github.com/Abiram-k/SkillPulse.git",
     live: "https://skillpulse.abiram.website",
   },
+  {
+    title: "Mapty",
+    description:
+      "This is a miniproject that i build using javascript,html and css, and also i used the power of ES6 class in this project ",
+    image: "mapty.png",
+    tech: ["Java Script", "HTML", "CSS"],
+    github: "https://github.com/Abiram-k/mapty.git",
+    live: "https://abiram-k.github.io/mapty/",
+  },
 ];
 
 export default function Projects() {

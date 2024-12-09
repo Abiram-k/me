@@ -37,28 +37,26 @@ export default function Timeline() {
         </motion.h2>
 
         <div className="relative">
-          {/* Vertical Line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gray-200" />
+          {/* Vertical Line - hidden on mobile, visible from md breakpoint */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gray-200 hidden md:block" />
 
           <div className="space-y-12">
             {timelineData.map((item, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`flex items-center ${
-                  index % 2 === 0 ? "flex-row" : "flex-row-reverse"
+                className={`flex flex-col md:flex-row items-center ${
+                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
                 }`}
               >
                 {/* Content */}
-                <div className="w-1/2 pr-8 pl-8">
+                <div className="w-full md:w-1/2 px-4 md:px-8">
                   <motion.div
                     whileHover={{ scale: 1.02 }}
-                    className={`bg-white p-6 rounded-lg shadow-md ${
-                      index % 2 === 0 ? "text-right" : "text-left"
-                    }`}
+                    className="bg-white p-6 rounded-lg shadow-md text-left md:text-left lg:text-right"
                   >
                     <span className="inline-block px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium mb-2">
                       {item.year}
@@ -77,7 +75,7 @@ export default function Timeline() {
                 <motion.div
                   whileHover={{ rotate: 360 }}
                   transition={{ duration: 0.6 }}
-                  className="w-12 h-12 rounded-full bg-indigo-600 flex items-center justify-center z-10"
+                  className="w-12 h-12 rounded-full bg-indigo-600 flex items-center justify-center z-10 my-4 md:my-0"
                 >
                   {item.icon === "work" ? (
                     <Briefcase className="w-6 h-6 text-white" />
@@ -86,8 +84,8 @@ export default function Timeline() {
                   )}
                 </motion.div>
 
-                {/* Empty space for the other side */}
-                <div className="w-1/2" />
+                {/* Empty space for the other side - hidden on mobile, visible from md breakpoint */}
+                <div className="hidden md:block md:w-1/2" />
               </motion.div>
             ))}
           </div>
