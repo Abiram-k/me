@@ -27,13 +27,14 @@ const projectsData: ProjectItem[] = [
   {
     title: "Mapty",
     description:
-      "This is a miniproject that i build using javascript,html and css, and also i used the power of ES6 class in this project ",
+      "This is a miniproject that i build using javascript, HTML and CSS, and also i used the power of ES6 class in this project ",
     image: "mapty.png",
-    tech: ["Java Script", "HTML", "CSS"],
+    tech: ["Java Script (ES6 Classes)", "HTML", "CSS",],
     github: "https://github.com/Abiram-k/mapty.git",
-    live: "https://abiram-k.github.io/mapty/",
+    live: " https://abiram-k.github.io/mapty/",
   },
 ];
+
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(
