@@ -1,37 +1,44 @@
-import { Code, Database, Globe, Palette, Server, Terminal } from 'lucide-react';
-import { motion } from 'framer-motion';
-import { fadeInUp, staggerContainer } from '../utils/animations';
+import { Code, Database, Globe, Palette, Server, Terminal } from "lucide-react";
+import { motion } from "framer-motion";
+import { fadeInUp, staggerContainer } from "../utils/animations";
 
 const skills = [
   {
-    category: 'Frontend Development',
+    category: "Frontend Development",
     icon: Globe,
-    skills: ['React', 'TypeScript', 'Next.js', 'Tailwind CSS', 'Redux'],
+    skills: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Redux"],
   },
   {
-    category: 'Backend Development',
+    category: "Backend Development",
     icon: Server,
-    skills: ['Node.js', 'Express', 'REST APIs'],
+    skills: ["Node.js", "Express", "REST APIs"],
   },
   {
-    category: 'Database',
+    category: "Database",
     icon: Database,
-    skills: ['PostgreSQL', 'MongoDB', 'Redis', 'Firebase'],
+    skills: ["PostgreSQL", "MongoDB", "Redis", "Firebase"],
   },
   {
-    category: 'DevOps',
+    category: "DevOps",
     icon: Terminal,
-    skills: ['AWS', 'Linux', 'Git', 'PM2', 'Nginx'],
+    skills: ["AWS", "Linux", "Git", "PM2", "Nginx","GCP"],
   },
   {
-    category: 'Programming Languages',
+    category: "Programming Languages",
     icon: Code,
-    skills: ['JavaScript', 'Typescript', 'React', 'Java', 'MongonDB','Express.js'],
+    skills: [
+      "JavaScript",
+      "Typescript",
+      "React",
+      "Java",
+      "MongonDB",
+      "Express.js",
+    ],
   },
   {
-    category: 'Design',
+    category: "Design",
     icon: Palette,
-    skills: ['Figma', 'Responsive Design'],
+    skills: ["Figma", "Responsive Design"],
   },
 ];
 
@@ -39,7 +46,7 @@ export default function Skills() {
   return (
     <section id="skills" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.h2 
+        <motion.h2
           className="text-3xl md:text-4xl font-bold text-center mb-16"
           variants={fadeInUp}
           initial="initial"
@@ -48,8 +55,8 @@ export default function Skills() {
         >
           Skills & Expertise
         </motion.h2>
-        
-        <motion.div 
+
+        <motion.div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           variants={staggerContainer}
           initial="initial"
@@ -63,21 +70,23 @@ export default function Skills() {
                 key={index}
                 className="bg-white p-6 rounded-xl shadow-md"
                 variants={fadeInUp}
-                whileHover={{ 
+                whileHover={{
                   y: -8,
-                  transition: { duration: 0.3 }
+                  transition: { duration: 0.3 },
                 }}
               >
-                <motion.div 
+                <motion.div
                   className="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mb-6"
                   whileHover={{ rotate: 360 }}
                   transition={{ duration: 0.6 }}
                 >
                   <Icon className="w-6 h-6 text-indigo-600" />
                 </motion.div>
-                
-                <h3 className="text-xl font-bold text-gray-900 mb-4">{category.category}</h3>
-                
+
+                <h3 className="text-xl font-bold text-gray-900 mb-4">
+                  {category.category}
+                </h3>
+
                 <div className="flex flex-wrap gap-2">
                   {category.skills.map((skill, skillIndex) => (
                     <motion.span

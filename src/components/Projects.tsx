@@ -16,25 +16,76 @@ type ProjectItem = {
 
 const projectsData: ProjectItem[] = [
   {
+    title: "StackNest – Real-time Dev Community",
+    description:
+      "A collaborative platform for developers to connect, join rooms, share projects and articles, and engage in real-time discussions. Built using React, Redux, Node.js, and MongoDB. Followed by clean repository architecture (SOLID)",
+    image: "stacknest.png",
+    tech: [
+      "React",
+      "Node.js",
+      "MongoDB",
+      "Express",
+      "DSA",
+      "OAuth",
+      "Jwt",
+      "Tailwind CSS",
+    ],
+    github: "https://github.com/Abiram-k/StackNest",
+    live: "https://stacknest.abiram.website",
+  },
+  {
     title: "Gaming Products E-Commerce",
     description:
       "A dynamic e-commerce website for gaming products, built with React, Redux, Node.js, and MongoDB.",
     image: "firstProject.png",
-    tech: ["React", "Redux", "Node.js", "MongoDB", "Tailwind CSS"],
-    github: "https://github.com/Abiram-k/SkillPulse.git",
+    tech: [
+      "React",
+      "Redux",
+      "Node.js",
+      "MongoDB",
+      "Tailwind CSS",
+      "Typescript",
+    ],
+    github: "https://github.com/Abiram-k/SkillPulse",
     live: "https://skillpulse.abiram.website",
+  },
+  {
+    title: "OCR - Aadhaar",
+    description:
+      "An intelligent OCR system that extracts and validates Aadhaar card details using Google Cloud Vision API. Built with React, TypeScript, and Express, offering fast and accurate text recognition.",
+    image: "mapty.png",
+    tech: ["React", "Typescript", "Google Cloud Vision", "Express"],
+    github: "https://github.com/Abiram-k/OCR-System",
+    live: "https://ocr-system-476z.onrender.com/",
   },
   {
     title: "Mapty",
     description:
       "This is a miniproject that i build using javascript, HTML and CSS, and also i used the power of ES6 class in this project ",
     image: "mapty.png",
-    tech: ["Java Script (ES6 Classes)", "HTML", "CSS",],
+    tech: ["Java Script (ES6 Classes)", "HTML", "CSS"],
     github: "https://github.com/Abiram-k/mapty.git",
     live: " https://abiram-k.github.io/mapty/",
   },
+  {
+    title: "Smolink - URL Shortener",
+    description:
+      "A minimalistic and efficient URL shortener that generates unique short links with QR code support and clipboard copying. Built with React, Express, and MongoDB.",
+    image: "smolink.png",
+    tech: ["React", "Express", "MongoDB", "ShortID", "QR Code"],
+    github: "https://github.com/Abiram-k/URL_Shortner",
+    live: "",
+  },
+  {
+    title: "Student Portal",
+    description:
+      "A comprehensive portal for students to show their details. Built with the MERN stack and supports user roles, real-time updates, and responsive design.",
+    image: "studentPortal.png",
+    tech: ["React", "Redux", "Node.js", "Express", "SQL", "Typescript"],
+    github: "https://github.com/Abiram-k/student_mangment",
+    live: "",
+  },
 ];
-
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(

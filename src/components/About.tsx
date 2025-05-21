@@ -60,8 +60,8 @@ export default function About() {
               variants={fadeInUp}
             >
               <div className="p-4 bg-gray-50 rounded-lg">
-                <h3 className="font-bold text-xl text-gray-900">6</h3>
-                <p className="text-gray-600">Months Experience</p>
+                <h3 className="font-bold text-xl text-gray-900">1+</h3>
+                <p className="text-gray-600">Year Experience</p>
               </div>
               <div className="p-4 bg-gray-50 rounded-lg">
                 <h3 className="font-bold text-xl text-gray-900">Aspiring</h3>
