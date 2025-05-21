@@ -6,8 +6,8 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
-  // base: '/me/', 
-  base:'/'
+  base: '/me/', 
+  // base:'/'
 });
 
 // npx gh-pages -d dist

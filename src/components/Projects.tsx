@@ -53,7 +53,7 @@ const projectsData: ProjectItem[] = [
     title: "OCR - Aadhaar",
     description:
       "An intelligent OCR system that extracts and validates Aadhaar card details using Google Cloud Vision API. Built with React, TypeScript, and Express, offering fast and accurate text recognition.",
-    image: "mapty.png",
+    image: "ocr-adhaar.png",
     tech: ["React", "Typescript", "Google Cloud Vision", "Express"],
     github: "https://github.com/Abiram-k/OCR-System",
     live: "https://ocr-system-476z.onrender.com/",
@@ -71,7 +71,7 @@ const projectsData: ProjectItem[] = [
     title: "Smolink - URL Shortener",
     description:
       "A minimalistic and efficient URL shortener that generates unique short links with QR code support and clipboard copying. Built with React, Express, and MongoDB.",
-    image: "smolink.png",
+    image: "url-shortner.jpeg",
     tech: ["React", "Express", "MongoDB", "ShortID", "QR Code"],
     github: "https://github.com/Abiram-k/URL_Shortner",
     live: "",
@@ -80,7 +80,7 @@ const projectsData: ProjectItem[] = [
     title: "Student Portal",
     description:
       "A comprehensive portal for students to show their details. Built with the MERN stack and supports user roles, real-time updates, and responsive design.",
-    image: "studentPortal.png",
+    image: "student-portal.jpeg",
     tech: ["React", "Redux", "Node.js", "Express", "SQL", "Typescript"],
     github: "https://github.com/Abiram-k/student_mangment",
     live: "",
