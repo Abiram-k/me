@@ -39,7 +39,7 @@ export default function About() {
               dedicated towards goals!
             </motion.p>
             <motion.p className="text-lg text-gray-600" variants={fadeInUp}>
-              Hi, I'm Abiram, an aspiring software developer with a strong
+              Hi, I'm Abiram, a software developer with a strong
               passion for learning and building impactful solutions. I am
               currently working as an intern at Brototype, where I'm gaining
               valuable industry experience and honing my technical skills.
@@ -64,8 +64,8 @@ export default function About() {
                 <p className="text-gray-600">Year Experience</p>
               </div>
               <div className="p-4 bg-gray-50 rounded-lg">
-                <h3 className="font-bold text-xl text-gray-900">Aspiring</h3>
-                <p className="text-gray-600">Software Developer</p>
+                <h3 className="font-bold text-xl text-gray-900">Full Stack Engineer</h3>
+                <p className="text-gray-600">Crafting modern, user-focused applications</p>
               </div>
             </motion.div>
           </motion.div>
