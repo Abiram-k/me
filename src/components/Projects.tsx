@@ -50,6 +50,24 @@ const projectsData: ProjectItem[] = [
     live: "https://skillpulse.abiram.website",
   },
   {
+    title: "Leave Management System",
+    description:
+      "A role-based leave management application with secure authentication and approval workflows. Features include employee management, leave type configuration, and leave request handling with admin approval.",
+    image: "404.gif",
+    tech: ["React", "Node.js", "MySQL", "JWT"],
+    github: "https://github.com/Abiram-k/leave-management-system.git",
+    live: "",
+  },
+  {
+    title: "Task Management System",
+    description:
+      "A real-time task management application that enables users to track, manage, and visualize tasks efficiently. Includes secure authentication, live updates with Socket.IO, and interactive charts for task insights.",
+    image: "taskManagement.png",
+    tech: ["React", "Node.js", "MongoDB", "TypeScript", "Socket.IO"],
+    github: "https://lnkd.in/gA8W43fu",
+    live: "",
+  },
+  {
     title: "OCR - Aadhaar",
     description:
       "An intelligent OCR system that extracts and validates Aadhaar card details using Google Cloud Vision API. Built with React, TypeScript, and Express, offering fast and accurate text recognition.",
@@ -64,7 +82,7 @@ const projectsData: ProjectItem[] = [
       "This is a miniproject that i build using javascript, HTML and CSS, and also i used the power of ES6 class in this project ",
     image: "mapty.png",
     tech: ["Java Script (ES6 Classes)", "HTML", "CSS"],
-    github: "https://github.com/Abiram-k/mapty.git",
+    github: "https://github.com/Abiram-k/mapty",
     live: " https://abiram-k.github.io/mapty/",
   },
   {
@@ -85,6 +103,15 @@ const projectsData: ProjectItem[] = [
     github: "https://github.com/Abiram-k/student_mangment",
     live: "",
   },
+  {
+    title: "Invoice Generator",
+    description:
+      "A React-based tool to generate and customize invoices in PDF format. Built with @react-pdf/renderer for dynamic PDF creation and deployed on Vercel.",
+    image: "404.gif",
+    tech: ["React", "React-PDF", "Vercel"],
+    github: "https://github.com/Abiram-k/invoice-generator",
+    live: "",
+  }
 ];
 
 export default function Projects() {

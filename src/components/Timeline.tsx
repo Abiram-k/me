@@ -11,11 +11,19 @@ const timelineData = [
     icon: "education",
   },
   {
-    year: "2024",
+    year: "2024 - 2025",
     title: "MERN Stack Developer",
     company: "Brototype",
     description:
       "Worked as a MERN stack developer intern, building full-stack applications and gaining hands-on experience in React, Node.js, and MongoDB.",
+    icon: "work",
+  },
+  {
+    year: "2025",
+    title: "Full Stack Engineer",
+    company: "Annam Ai",
+    description:
+      "Contributing as a Full Stack Engineer, driving the development of scalable web applications and delivering seamless user experiences. Currently working on the 'Vibe' project, where I focus on building impactful features, improving performance, and ensuring product reliability.",
     icon: "work",
   },
 ];
