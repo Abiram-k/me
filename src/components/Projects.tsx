@@ -112,7 +112,7 @@ const projectsData: ProjectItem[] = [
     github: "https://github.com/Abiram-k/invoice-generator",
     live: "",
   }
-];
+]; 
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(
