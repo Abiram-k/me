@@ -9,6 +9,14 @@ export default function Hero() {
   const s3Ref = useRef<HTMLDivElement>(null);
   const animRef = useRef<number>(0);
 
+  const pills = [
+    { label: 'Full-Stack Development', color: '#7B6EF6' },
+    { label: 'Mobile Apps',            color: '#E879F9' },
+    { label: 'AI Integrations',        color: '#06B6D4' },
+    { label: 'Cloud Deployment',       color: '#10B981' },
+    { label: 'API Integrations',       color: '#FBBF24' },
+  ];
+
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -129,9 +137,9 @@ export default function Hero() {
       requestAnimationFrame(step);
     };
     const t = setTimeout(() => {
-      countUp(s1Ref.current, 20, '+', 1200);
-      countUp(s2Ref.current, 15, '+', 1000);
-      countUp(s3Ref.current, 500, '+', 1400);
+      countUp(s1Ref.current, 60, '+', 1200);
+      countUp(s2Ref.current, 30, '+', 1000);
+      countUp(s3Ref.current, 2000, '+', 1400);
     }, 1500);
     return () => clearTimeout(t);
   }, []);
@@ -261,7 +269,7 @@ export default function Hero() {
           -webkit-text-fill-color: transparent;
           background-clip: text;
           background-size: 200% auto;
-          animation: heroGradFlow 4s linear infinite;
+          animation: heroLineReveal .8s cubic-bezier(.22,1,.36,1) .55s forwards, heroGradFlow 4s linear 1.35s infinite;
         }
         @keyframes heroGradFlow { 0% { background-position: 0%; } 100% { background-position: 200%; } }
         @keyframes heroLineReveal { to { transform: translateY(0); } }
@@ -430,10 +438,7 @@ export default function Hero() {
         <div ref={glyphsRef} className="hero-glyphs" />
 
         <div className="hero-content">
-          <div className="hero-badge">
-            <span className="hero-badge-dot" />
-            Available for work
-          </div>
+          
 
           <h1 className="hero-h1">
             <span className="hero-h1-line"><span className="hero-h1-inner">Building the Future</span></span>
@@ -448,17 +453,15 @@ export default function Hero() {
           </div>
 
           <div className="hero-pills">
-            {[
-              { label: 'React',      color: '#7B6EF6' },
-              { label: 'NestJS',     color: '#E879F9' },
-              { label: 'TypeScript', color: '#06B6D4' },
-              { label: 'FastAPI',    color: '#10B981' },
-              { label: 'Next.js',    color: '#FBBF24' },
-            ].map(({ label, color }) => (
+            {pills.map(({ label, color }) => (
               <span
                 key={label}
                 className="hero-pill"
-                style={{ color, borderColor: `${color}55`, background: `${color}12` }}
+                style={{
+                  color,
+                  borderColor: `${color}55`,
+                  background: `${color}12`,
+                }}
               >
                 {label}
               </span>
@@ -492,23 +495,18 @@ export default function Hero() {
               <div ref={s1Ref} className="hero-stat-num">0+</div>
               <div className="hero-stat-label">Projects Built</div>
             </div>
-            <div className="hero-stat-div" />
             <div className="hero-stat-item">
               <div ref={s2Ref} className="hero-stat-num">0+</div>
               <div className="hero-stat-label">Technologies</div>
             </div>
-            <div className="hero-stat-div" />
             <div className="hero-stat-item">
               <div ref={s3Ref} className="hero-stat-num">0+</div>
-              <div className="hero-stat-label">Commits</div>
+              <div className="hero-stat-label">Contributions</div>
             </div>
           </div>
         </div>
 
-        <div className="hero-scroll">
-          <span className="hero-scroll-text">Scroll</span>
-          <div className="hero-scroll-line" />
-        </div>
+        
       </section>
     </>
   );

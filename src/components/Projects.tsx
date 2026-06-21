@@ -346,8 +346,8 @@ export default function Projects() {
         .pj-section {
           position: relative;
           padding: 96px 24px;
-          background: #060608;
-          color: #EAEAF0;
+          background: var(--bg-primary);
+          color: var(--text-primary);
           font-family: 'Inter', system-ui, sans-serif;
           overflow: hidden;
         }
@@ -355,8 +355,8 @@ export default function Projects() {
           content: '';
           position: absolute; inset: 0;
           background:
-            radial-gradient(800px 400px at 20% 0%, rgba(123,110,246,0.08), transparent 60%),
-            radial-gradient(700px 400px at 80% 100%, rgba(78,205,196,0.06), transparent 60%);
+            radial-gradient(800px 400px at 20% 0%, var(--orb-1), transparent 60%),
+            radial-gradient(700px 400px at 80% 100%, var(--orb-2), transparent 60%);
           pointer-events: none;
         }
         .pj-container { max-width: 1200px; margin: 0 auto; position: relative; }
@@ -364,7 +364,7 @@ export default function Projects() {
           font-family: 'JetBrains Mono', monospace;
           font-size: 12px;
           letter-spacing: 0.2em;
-          color: #7B6EF6;
+          color: var(--accent-1);
           text-transform: uppercase;
           margin-bottom: 16px;
         }
@@ -377,7 +377,7 @@ export default function Projects() {
           margin: 0 0 56px;
         }
         .pj-heading .grad {
-          background: linear-gradient(90deg, #7B6EF6, #4ECDC4, #FF8A4C, #7B6EF6);
+          background: linear-gradient(90deg, var(--accent-1), var(--accent-2), var(--accent-3), var(--accent-1));
           background-size: 200% auto;
           -webkit-background-clip: text;
           background-clip: text;
@@ -394,8 +394,8 @@ export default function Projects() {
         }
         .pj-card {
           position: relative;
-          background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
-          border: 1px solid rgba(255,255,255,0.08);
+          background: var(--card-bg);
+          border: 1px solid var(--card-border);
           border-radius: 18px;
           padding: 0;
           overflow: hidden;
@@ -425,16 +425,16 @@ export default function Projects() {
           position: absolute; top: 16px; right: 18px;
           font-family: 'JetBrains Mono', monospace;
           font-size: 11px;
-          color: rgba(255,255,255,0.35);
+          color: var(--text-muted);
           letter-spacing: 0.1em;
           z-index: 2;
         }
         .pj-thumb {
           position: relative;
           height: 180px;
-          background: #0b0b10;
+          background: var(--bg-secondary);
           overflow: hidden;
-          border-bottom: 1px solid rgba(255,255,255,0.06);
+          border-bottom: 1px solid var(--card-border);
         }
         .pj-thumb-img,
         .pj-modal-img {
@@ -468,13 +468,13 @@ export default function Projects() {
           font-size: 1.15rem;
           font-weight: 600;
           margin: 0 0 8px;
-          color: #fff;
+          color: var(--text-primary);
           line-height: 1.3;
         }
         .pj-desc {
           font-size: 13.5px;
           line-height: 1.55;
-          color: rgba(234,234,240,0.62);
+          color: var(--text-secondary);
           margin: 0 0 16px;
           display: -webkit-box;
           -webkit-line-clamp: 3;
@@ -487,9 +487,9 @@ export default function Projects() {
           font-size: 10.5px;
           padding: 4px 9px;
           border-radius: 6px;
-          background: rgba(255,255,255,0.04);
-          border: 1px solid rgba(255,255,255,0.08);
-          color: rgba(234,234,240,0.75);
+          background: var(--card-bg);
+          border: 1px solid var(--card-border);
+          color: var(--text-secondary);
         }
         .pj-tag-more { color: var(--color); border-color: color-mix(in srgb, var(--color) 30%, transparent); }
         .pj-actions { display: flex; gap: 10px; }
@@ -500,9 +500,9 @@ export default function Projects() {
           font-weight: 500;
           font-family: 'Inter', sans-serif;
           border-radius: 8px;
-          background: rgba(255,255,255,0.05);
-          border: 1px solid rgba(255,255,255,0.1);
-          color: #EAEAF0;
+          background: var(--card-bg);
+          border: 1px solid var(--card-border);
+          color: var(--text-primary);
           text-decoration: none;
           transition: all .25s ease;
         }
@@ -524,9 +524,9 @@ export default function Projects() {
           text-align: center;
           font-family: 'JetBrains Mono', monospace;
           font-size: 12px;
-          color: rgba(234,234,240,0.4);
+          color: var(--text-muted);
         }
-        .pj-footer span { color: #4ECDC4; }
+        .pj-footer span { color: var(--accent-3); }
 
         /* Modal */
         .pj-modal-overlay {
@@ -544,8 +544,8 @@ export default function Projects() {
           max-width: 640px; width: 100%;
           max-height: 90vh;
           overflow-y: auto;
-          background: #0b0b10;
-          border: 1px solid rgba(255,255,255,0.1);
+          background: var(--bg-secondary);
+          border: 1px solid var(--card-border);
           border-radius: 20px;
           animation: pjModalIn .35s cubic-bezier(.2,.7,.2,1);
         }
@@ -558,18 +558,18 @@ export default function Projects() {
           width: 34px; height: 34px;
           display: flex; align-items: center; justify-content: center;
           border-radius: 8px;
-          background: rgba(255,255,255,0.06);
-          border: 1px solid rgba(255,255,255,0.1);
-          color: #EAEAF0;
+          background: var(--card-bg);
+          border: 1px solid var(--card-border);
+          color: var(--text-primary);
           cursor: pointer;
           z-index: 2;
           transition: background .2s ease;
         }
-        .pj-modal-close:hover { background: rgba(255,255,255,0.12); }
+        .pj-modal-close:hover { background: var(--glass-bg); }
         .pj-modal-hero {
           position: relative;
           height: 240px;
-          background: #0b0b10;
+          background: var(--bg-secondary);
           overflow: hidden;
         }
         .pj-modal-body { padding: 28px; }

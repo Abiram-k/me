@@ -146,7 +146,7 @@ export default function Timeline() {
     <>
       <style>{`
         #timeline {
-          background: #060608;
+          background: var(--bg-primary);
           padding: 5rem 1.5rem;
           font-family: 'Inter', sans-serif;
         }
@@ -160,7 +160,7 @@ export default function Timeline() {
           font-size: .72rem;
           letter-spacing: .15em;
           text-transform: uppercase;
-          color: rgba(255,255,255,.3);
+          color: var(--text-muted);
           margin-bottom: .75rem;
           font-family: 'JetBrains Mono', monospace;
         }
@@ -171,9 +171,9 @@ export default function Timeline() {
           letter-spacing: -1.5px;
           line-height: 1.1;
         }
-        .tl-title-white { color: rgba(255,255,255,.92); }
+        .tl-title-white { color: var(--text-primary); }
         .tl-title-grad {
-          background: linear-gradient(135deg, #7B6EF6, #E879F9 50%, #06B6D4);
+          background: linear-gradient(135deg, var(--accent-1), var(--accent-2) 50%, var(--accent-3));
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -194,7 +194,7 @@ export default function Timeline() {
           bottom: 0;
           left: 50%;
           width: 1px;
-          background: rgba(255,255,255,.07);
+          background: var(--card-border);
           transform: translateX(-50%);
         }
         @media (max-width: 768px) {
@@ -205,8 +205,8 @@ export default function Timeline() {
           position: relative;
           border-radius: 16px;
           padding: 1.75rem;
-          background: rgba(255,255,255,.032);
-          border: 1px solid rgba(255,255,255,.07);
+          background: var(--card-bg);
+          border: 1px solid var(--card-border);
           transform-style: preserve-3d;
           transition: transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s, border-color .4s;
           cursor: default;
@@ -231,7 +231,7 @@ export default function Timeline() {
         .tl-card-num {
           position: absolute; top: 1.25rem; right: 1.25rem;
           font-family: 'JetBrains Mono', monospace;
-          font-size: .7rem; color: rgba(255,255,255,.12); letter-spacing: .05em;
+          font-size: .7rem; color: var(--text-muted); letter-spacing: .05em;
         }
 
         .tl-icon-ring {
@@ -253,16 +253,16 @@ export default function Timeline() {
 
         .tl-title {
           font-family: 'Space Grotesk', sans-serif;
-          font-size: 1.05rem; font-weight: 600; color: #fff;
+          font-size: 1.05rem; font-weight: 600; color: var(--text-primary);
           letter-spacing: -.3px; margin-bottom: .2rem;
         }
         .tl-company {
           font-size: .78rem; font-weight: 500;
           margin-bottom: .75rem;
         }
-        .tl-divider { height: 1px; background: rgba(255,255,255,.07); margin-bottom: .75rem; }
+        .tl-divider { height: 1px; background: var(--card-border); margin-bottom: .75rem; }
         .tl-desc {
-          font-size: .82rem; color: rgba(255,255,255,.45);
+          font-size: .82rem; color: var(--text-muted);
           line-height: 1.65;
         }
 
@@ -274,7 +274,7 @@ export default function Timeline() {
         .tl-node {
           width: 36px; height: 36px; border-radius: 50%;
           border: 2px solid;
-          background: #060608;
+          background: var(--bg-primary);
           display: flex; align-items: center; justify-content: center;
           transition: transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s;
         }

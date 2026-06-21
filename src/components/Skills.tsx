@@ -198,7 +198,7 @@ export default function Skills() {
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Space+Grotesk:wght@600;700&family=JetBrains+Mono:wght@400&display=swap');
 
         #skills {
-          background: #060608;
+          background: var(--bg-primary);
           padding: 5rem 1.5rem;
           font-family: 'Inter', sans-serif;
         }
@@ -213,7 +213,7 @@ export default function Skills() {
           font-size: .72rem;
           letter-spacing: .15em;
           text-transform: uppercase;
-          color: rgba(255,255,255,.3);
+          color: var(--text-muted);
           margin-bottom: .75rem;
           font-family: 'JetBrains Mono', monospace;
         }
@@ -224,9 +224,9 @@ export default function Skills() {
           letter-spacing: -1.5px;
           line-height: 1.1;
         }
-        .sk-title-white { color: rgba(255,255,255,.92); }
+        .sk-title-white { color: var(--text-primary); }
         .sk-title-grad {
-          background: linear-gradient(135deg, #7B6EF6, #E879F9 50%, #06B6D4);
+          background: linear-gradient(135deg, var(--accent-1), var(--accent-2) 50%, var(--accent-3));
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -248,8 +248,8 @@ export default function Skills() {
           position: relative;
           border-radius: 16px;
           padding: 1.75rem;
-          background: rgba(255,255,255,.032);
-          border: 1px solid rgba(255,255,255,.07);
+          background: var(--card-bg);
+          border: 1px solid var(--card-border);
           transform-style: preserve-3d;
           transition: transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s, border-color .4s;
           cursor: default;
@@ -276,7 +276,7 @@ export default function Skills() {
         .sk-card-num {
           position: absolute; top: 1.25rem; right: 1.25rem;
           font-family: 'JetBrains Mono', monospace;
-          font-size: .7rem; color: rgba(255,255,255,.12); letter-spacing: .05em;
+          font-size: .7rem; color: var(--text-muted); letter-spacing: .05em;
         }
 
         .sk-icon-ring {
@@ -289,14 +289,14 @@ export default function Skills() {
 
         .sk-cat {
           font-family: 'Space Grotesk', sans-serif;
-          font-size: 1rem; font-weight: 600; color: #fff;
+          font-size: 1rem; font-weight: 600; color: var(--text-primary);
           margin-bottom: .25rem; letter-spacing: -.3px;
         }
         .sk-count {
-          font-size: .72rem; color: rgba(255,255,255,.3);
+          font-size: .72rem; color: var(--text-muted);
           margin-bottom: 1rem; font-family: 'JetBrains Mono', monospace;
         }
-        .sk-divider { height: 1px; background: rgba(255,255,255,.07); margin-bottom: 1rem; }
+        .sk-divider { height: 1px; background: var(--card-border); margin-bottom: 1rem; }
 
         .sk-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
         .sk-tag {
@@ -310,9 +310,9 @@ export default function Skills() {
         .sk-bar-wrap { margin-top: 1.25rem; }
         .sk-bar-label {
           display: flex; justify-content: space-between;
-          font-size: .7rem; margin-bottom: .35rem; color: rgba(255,255,255,.4);
+          font-size: .7rem; margin-bottom: .35rem; color: var(--text-muted);
         }
-        .sk-bar-track { height: 3px; background: rgba(255,255,255,.06); border-radius: 99px; overflow: hidden; }
+        .sk-bar-track { height: 3px; background: var(--card-border); border-radius: 99px; overflow: hidden; }
         .sk-bar-fill {
           height: 100%; border-radius: 99px;
           transform: scaleX(0); transform-origin: left;
@@ -326,10 +326,10 @@ export default function Skills() {
           opacity: 0; animation: skFadeUp .6s 1.2s forwards;
         }
         .sk-footer-text {
-          font-size: .8rem; color: rgba(255,255,255,.2);
+          font-size: .8rem; color: var(--text-muted);
           font-family: 'JetBrains Mono', monospace;
         }
-        .sk-footer-text span { color: #7B6EF6; }
+        .sk-footer-text span { color: var(--accent-1); }
       `}</style>
 
       <section id="skills">

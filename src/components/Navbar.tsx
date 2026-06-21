@@ -284,21 +284,21 @@ export default function Navbar() {
 
         .nb-resume-btn {
           margin-left: 0.75rem; padding: 0.45rem 1.1rem;
-          background: rgba(255, 255, 255, 0.04);
-          border: 1px solid rgba(123, 110, 246, 0.35); border-radius: 8px; cursor: pointer;
+          background: var(--card-bg);
+          border: 1px solid color-mix(in srgb, var(--accent-1) 35%, transparent); border-radius: 8px; cursor: pointer;
           font-family: 'Inter', sans-serif; font-size: 0.82rem; font-weight: 600;
-          color: rgba(255, 255, 255, 0.85); letter-spacing: 0.03em; text-decoration: none;
+          color: var(--text-primary); letter-spacing: 0.03em; text-decoration: none;
           position: relative; overflow: hidden;
           transition: all 0.3s ease;
           display: flex; align-items: center; gap: 6px;
           backdrop-filter: blur(8px);
         }
         .nb-resume-btn:hover {
-          background: rgba(123, 110, 246, 0.1);
-          border-color: rgba(123, 110, 246, 0.6);
-          color: #fff;
+          background: color-mix(in srgb, var(--accent-1) 10%, transparent);
+          border-color: color-mix(in srgb, var(--accent-1) 60%, transparent);
+          color: var(--text-primary);
           transform: translateY(-2px);
-          box-shadow: 0 6px 20px rgba(123, 110, 246, 0.25);
+          box-shadow: 0 6px 20px color-mix(in srgb, var(--accent-1) 25%, transparent);
         }
         .nb-resume-btn span { position: relative; z-index: 1; }
 

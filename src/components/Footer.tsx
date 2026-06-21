@@ -38,8 +38,8 @@ export default function Footer() {
         .ft-section {
           position: relative;
           padding: 72px 24px 32px;
-          background: #060608;
-          color: #EAEAF0;
+          background: var(--bg-primary);
+          color: var(--text-primary);
           font-family: 'Inter', system-ui, sans-serif;
           overflow: hidden;
         }
@@ -47,7 +47,7 @@ export default function Footer() {
           content: '';
           position: absolute; inset: 0;
           background:
-            radial-gradient(500px 250px at 50% 0%, rgba(123,110,246,0.06), transparent 60%);
+            radial-gradient(500px 250px at 50% 0%, var(--orb-1), transparent 60%);
           pointer-events: none;
         }
         .ft-top-border {
@@ -63,12 +63,12 @@ export default function Footer() {
         .ft-brand {
           font-family: 'Space Grotesk', sans-serif;
           font-size: 1.5rem; font-weight: 700;
-          color: #fff; letter-spacing: -0.5px;
+          color: var(--text-primary); letter-spacing: -0.5px;
           margin-bottom: 8px;
         }
         .ft-tagline {
           font-size: 14px;
-          color: rgba(234,234,240,0.45);
+          color: var(--text-muted);
           margin-bottom: 28px;
         }
 
@@ -81,9 +81,9 @@ export default function Footer() {
           display: flex; align-items: center; justify-content: center;
           width: 44px; height: 44px;
           border-radius: 12px;
-          background: rgba(255,255,255,0.04);
-          border: 1px solid rgba(255,255,255,0.08);
-          color: rgba(234,234,240,0.65);
+          background: var(--card-bg);
+          border: 1px solid var(--card-border);
+          color: var(--text-secondary);
           text-decoration: none;
           transition: all .3s cubic-bezier(.22,1,.36,1);
           overflow: hidden;
@@ -115,7 +115,7 @@ export default function Footer() {
         }
         .ft-link {
           font-size: 13px;
-          color: rgba(234,234,240,0.45);
+          color: var(--text-muted);
           text-decoration: none;
           transition: color .25s ease;
           position: relative;
@@ -124,11 +124,11 @@ export default function Footer() {
           content: '';
           position: absolute; bottom: -2px; left: 0;
           width: 0; height: 1px;
-          background: #7B6EF6;
+          background: var(--accent-1);
           transition: width .3s ease;
         }
         .ft-link:hover {
-          color: rgba(234,234,240,0.85);
+          color: var(--text-secondary);
         }
         .ft-link:hover::after {
           width: 100%;
@@ -137,10 +137,10 @@ export default function Footer() {
         .ft-copy {
           font-family: 'JetBrains Mono', monospace;
           font-size: 11.5px;
-          color: rgba(234,234,240,0.3);
+          color: var(--text-muted);
           letter-spacing: 0.05em;
         }
-        .ft-copy span { color: #7B6EF6; }
+        .ft-copy span { color: var(--accent-1); }
       `}</style>
 
       <div className="ft-top-border" />

@@ -120,8 +120,8 @@ export default function Contact() {
         .ct-section {
           position: relative;
           padding: 96px 24px;
-          background: #060608;
-          color: #EAEAF0;
+          background: var(--bg-primary);
+          color: var(--text-primary);
           font-family: 'Inter', system-ui, sans-serif;
           overflow: hidden;
         }
@@ -129,8 +129,8 @@ export default function Contact() {
           content: '';
           position: absolute; inset: 0;
           background:
-            radial-gradient(600px 300px at 10% 20%, rgba(123,110,246,0.07), transparent 60%),
-            radial-gradient(500px 300px at 90% 80%, rgba(78,205,196,0.05), transparent 60%);
+            radial-gradient(600px 300px at 10% 20%, var(--orb-1), transparent 60%),
+            radial-gradient(500px 300px at 90% 80%, var(--orb-2), transparent 60%);
           pointer-events: none;
         }
         .ct-container { max-width: 1100px; margin: 0 auto; position: relative; }
@@ -139,7 +139,7 @@ export default function Contact() {
           font-family: 'JetBrains Mono', monospace;
           font-size: 12px;
           letter-spacing: 0.2em;
-          color: #7B6EF6;
+          color: var(--accent-1);
           text-transform: uppercase;
           margin-bottom: 16px;
         }
@@ -152,7 +152,7 @@ export default function Contact() {
           margin: 0 0 16px;
         }
         .ct-heading .grad {
-          background: linear-gradient(90deg, #7B6EF6, #4ECDC4, #FF8A4C, #7B6EF6);
+          background: linear-gradient(90deg, var(--accent-1), var(--accent-2), var(--accent-3), var(--accent-1));
           background-size: 200% auto;
           -webkit-background-clip: text;
           background-clip: text;
@@ -162,7 +162,7 @@ export default function Contact() {
         @keyframes ctGradFlow { to { background-position: 200% center; } }
         .ct-subtitle {
           font-size: 15px;
-          color: rgba(234,234,240,0.55);
+          color: var(--text-secondary);
           max-width: 480px;
           margin: 0 auto;
           line-height: 1.6;
@@ -187,8 +187,8 @@ export default function Contact() {
           gap: 16px;
           padding: 20px 24px;
           border-radius: 16px;
-          background: rgba(255,255,255,0.032);
-          border: 1px solid rgba(255,255,255,0.07);
+          background: var(--card-bg);
+          border: 1px solid var(--card-border);
           transition: border-color .35s ease, box-shadow .35s ease, transform .25s ease;
           overflow: hidden;
           opacity: 0;
@@ -223,13 +223,13 @@ export default function Contact() {
           font-size: 11px;
           letter-spacing: 0.1em;
           text-transform: uppercase;
-          color: rgba(234,234,240,0.45);
+          color: var(--text-muted);
           margin: 0 0 4px;
         }
         .ct-info-value {
           font-size: 15px;
           font-weight: 500;
-          color: rgba(234,234,240,0.9);
+          color: var(--text-primary);
           margin: 0;
         }
 
@@ -237,8 +237,8 @@ export default function Contact() {
         .ct-form-wrap {
           position: relative;
           border-radius: 20px;
-          background: rgba(255,255,255,0.03);
-          border: 1px solid rgba(255,255,255,0.07);
+          background: var(--card-bg);
+          border: 1px solid var(--card-border);
           padding: 36px;
           opacity: 0;
           animation: ctFadeUp .7s .2s cubic-bezier(.2,.7,.2,1) forwards;
@@ -246,7 +246,7 @@ export default function Contact() {
         .ct-form-wrap::before {
           content: '';
           position: absolute; inset: 0; border-radius: 20px;
-          background: linear-gradient(135deg, rgba(123,110,246,0.04) 0%, transparent 50%);
+          background: linear-gradient(135deg, var(--orb-1) 0%, transparent 50%);
           pointer-events: none;
         }
         .ct-form { position: relative; z-index: 1; }
@@ -257,17 +257,17 @@ export default function Contact() {
           font-size: 11px;
           letter-spacing: 0.08em;
           text-transform: uppercase;
-          color: rgba(234,234,240,0.5);
+          color: var(--text-muted);
           margin-bottom: 8px;
         }
         .ct-field input,
         .ct-field textarea {
           width: 100%;
           padding: 12px 16px;
-          background: rgba(255,255,255,0.04);
-          border: 1px solid rgba(255,255,255,0.08);
+          background: var(--card-bg);
+          border: 1px solid var(--card-border);
           border-radius: 10px;
-          color: #EAEAF0;
+          color: var(--text-primary);
           font-size: 14.5px;
           font-family: 'Inter', sans-serif;
           outline: none;
@@ -275,13 +275,13 @@ export default function Contact() {
         }
         .ct-field input::placeholder,
         .ct-field textarea::placeholder {
-          color: rgba(234,234,240,0.3);
+          color: var(--text-muted);
         }
         .ct-field input:focus,
         .ct-field textarea:focus {
-          border-color: color-mix(in srgb, #7B6EF6 50%, transparent);
-          box-shadow: 0 0 0 3px rgba(123,110,246,0.1);
-          background: rgba(255,255,255,0.055);
+          border-color: color-mix(in srgb, var(--accent-1) 50%, transparent);
+          box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-1) 15%, transparent);
+          background: var(--card-bg);
         }
         .ct-field textarea {
           resize: vertical;
@@ -300,9 +300,9 @@ export default function Contact() {
           font-weight: 600;
           font-family: 'Inter', sans-serif;
           border-radius: 12px;
-          border: 1px solid rgba(123,110,246,0.45);
-          background: rgba(123,110,246,0.12);
-          color: #7B6EF6;
+          border: 1px solid color-mix(in srgb, var(--accent-1) 45%, transparent);
+          background: color-mix(in srgb, var(--accent-1) 12%, transparent);
+          color: var(--accent-1);
           cursor: pointer;
           transition: all .3s ease;
           position: relative;
@@ -311,16 +311,16 @@ export default function Contact() {
         .ct-btn::before {
           content: '';
           position: absolute; inset: 0;
-          background: radial-gradient(300px circle at var(--mx,50%) var(--my,50%), rgba(123,110,246,0.2), transparent 60%);
+          background: radial-gradient(300px circle at var(--mx,50%) var(--my,50%), color-mix(in srgb, var(--accent-1) 20%, transparent), transparent 60%);
           opacity: 0; transition: opacity .3s ease;
           pointer-events: none;
         }
         .ct-btn:hover {
-          background: rgba(123,110,246,0.2);
-          border-color: rgba(123,110,246,0.7);
-          color: #fff;
+          background: color-mix(in srgb, var(--accent-1) 20%, transparent);
+          border-color: color-mix(in srgb, var(--accent-1) 70%, transparent);
+          color: var(--text-primary);
           transform: translateY(-1px);
-          box-shadow: 0 12px 32px -10px rgba(123,110,246,0.25);
+          box-shadow: 0 12px 32px -10px color-mix(in srgb, var(--accent-1) 25%, transparent);
         }
         .ct-btn:hover::before { opacity: 1; }
         .ct-btn:disabled {
