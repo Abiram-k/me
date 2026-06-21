@@ -115,7 +115,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="ct-section">
+    <section id="contact" className="ct-section">
       <style>{`
         .ct-section {
           position: relative;

@@ -341,7 +341,7 @@ export default function Projects() {
   const [selected, setSelected] = useState<ProjectItem | null>(null);
 
   return (
-    <section className="pj-section">
+    <section id="projects" className="pj-section">
       <style>{`
         .pj-section {
           position: relative;

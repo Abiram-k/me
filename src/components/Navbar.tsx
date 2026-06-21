@@ -260,6 +260,26 @@ export default function Navbar() {
         .nb-cta:hover::before { opacity: 1; }
         .nb-cta span { position: relative; z-index: 1; }
 
+        .nb-resume-btn {
+          margin-left: 0.75rem; padding: 0.45rem 1.1rem;
+          background: rgba(255, 255, 255, 0.04);
+          border: 1px solid rgba(123, 110, 246, 0.35); border-radius: 8px; cursor: pointer;
+          font-family: 'Inter', sans-serif; font-size: 0.82rem; font-weight: 600;
+          color: rgba(255, 255, 255, 0.85); letter-spacing: 0.03em; text-decoration: none;
+          position: relative; overflow: hidden;
+          transition: all 0.3s ease;
+          display: flex; align-items: center; gap: 6px;
+          backdrop-filter: blur(8px);
+        }
+        .nb-resume-btn:hover {
+          background: rgba(123, 110, 246, 0.1);
+          border-color: rgba(123, 110, 246, 0.6);
+          color: #fff;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(123, 110, 246, 0.25);
+        }
+        .nb-resume-btn span { position: relative; z-index: 1; }
+
         .nb-mobile-btn {
           display: none; background: none;
           border: 1px solid rgba(255, 255, 255, 0.12);
@@ -359,6 +379,10 @@ export default function Navbar() {
             </a>
           </div>
 
+          <a href="/me/Abiram_K_Resume_updated.pdf" target="_blank" rel="noopener noreferrer" className="nb-resume-btn">
+            <span>Resume</span><span>↗</span>
+          </a>
+
           <a href="#contact" className="nb-cta">
             <span>Hire me</span><span>↗</span>
           </a>
@@ -383,6 +407,16 @@ export default function Navbar() {
             {label}
           </a>
         ))}
+        <a
+          href="/me/Abiram_K_Resume_updated.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="nb-mobile-link"
+          style={{ color: '#7B6EF6' }}
+          onClick={() => setIsOpen(false)}
+        >
+          Resume ↗
+        </a>
         <div className="nb-mobile-socials">
           <a href="https://github.com/Abiram-k" target="_blank" rel="noopener noreferrer" className="nb-social" aria-label="GitHub">
             <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15">

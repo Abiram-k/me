@@ -173,6 +173,7 @@ export default function Footer() {
         <div className="ft-links">
           <a href="#timeline" className="ft-link">Experience</a>
           <a href="#projects" className="ft-link">Projects</a>
+          <a href="/me/Abiram_K_Resume_updated.pdf" target="_blank" rel="noopener noreferrer" className="ft-link">Resume</a>
           <a href="#contact" className="ft-link">Contact</a>
         </div>
 

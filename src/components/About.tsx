@@ -65,7 +65,7 @@ function StatCard({ item, index }: { item: typeof stats[0]; index: number }) {
 
 export default function About() {
   return (
-    <section className="ab-section">
+    <section id="about" className="ab-section">
       <style>{`
         .ab-section {
           position: relative;
@@ -189,6 +189,28 @@ export default function About() {
         }
 
         /* Stats */
+        .ab-resume-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 0.65rem 1.5rem;
+          border-radius: 10px;
+          background: rgba(123, 110, 246, 0.08);
+          border: 1px solid rgba(123, 110, 246, 0.35);
+          color: #fff;
+          font-weight: 500;
+          font-size: 0.88rem;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          cursor: pointer;
+        }
+        .ab-resume-btn:hover {
+          background: rgba(123, 110, 246, 0.18);
+          border-color: rgba(123, 110, 246, 0.6);
+          transform: translateY(-2px);
+          box-shadow: 0 8px 24px rgba(123, 110, 246, 0.25);
+        }
+
         .ab-stats {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
@@ -296,6 +318,22 @@ export default function About() {
               Chinmaya Mission College, Thrissur. I focus on clean architecture, SOLID principles, and
               shipping reliable production systems.
             </p>
+
+            <div style={{ marginTop: "24px" }}>
+              <a
+                href="/me/Abiram_K_Resume_updated.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ab-resume-btn"
+              >
+                <span>View Resume</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+              </a>
+            </div>
 
             <div className="ab-stats">
               {stats.map((s, i) => (
