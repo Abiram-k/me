@@ -1,129 +1,501 @@
-import { ArrowDown } from 'lucide-react';
-import { motion } from 'framer-motion';
-import { gradientText, gradientBg, gradientHover } from '../utils/gradients';
-import { fadeInUp, staggerContainer } from '../utils/animations';
+import { useEffect, useRef } from 'react';
 
 export default function Hero() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const glyphsRef = useRef<HTMLDivElement>(null);
+  const twRef = useRef<HTMLDivElement>(null);
+  const s1Ref = useRef<HTMLDivElement>(null);
+  const s2Ref = useRef<HTMLDivElement>(null);
+  const s3Ref = useRef<HTMLDivElement>(null);
+  const animRef = useRef<number>(0);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d')!;
+    let W = 0, H = 0, mx = 0.5, my = 0.5, t = 0;
+
+    const resize = () => {
+      W = canvas.width = canvas.offsetWidth;
+      H = canvas.height = canvas.offsetHeight;
+    };
+    resize();
+    const ro = new ResizeObserver(resize);
+    ro.observe(canvas);
+
+    const onMouseMove = (e: MouseEvent) => {
+      mx = e.clientX / W;
+      my = e.clientY / H;
+    };
+    document.addEventListener('mousemove', onMouseMove);
+
+    const drawGrid = () => {
+      ctx.clearRect(0, 0, W, H);
+      const cols = 28, rows = 18;
+      const cw = W / cols, ch = H / rows;
+      const ox = (mx - 0.5) * 60, oy = (my - 0.5) * 40;
+
+      for (let r = 0; r <= rows; r++) {
+        for (let c = 0; c <= cols; c++) {
+          const bx = c * cw, by = r * ch;
+          const wave = Math.sin(c * 0.4 + t) * Math.cos(r * 0.5 + t * 0.7) * 18;
+          const dx = (mx - 0.5) * 2, dy = (my - 0.5) * 2;
+          const dist = Math.sqrt(Math.pow(c / cols - mx, 2) + Math.pow(r / rows - my, 2));
+          const lift = Math.max(0, 1 - dist * 2.5) * 30;
+          const z = wave + lift;
+          const px = bx + ox * (1 - c / cols) + z * dx * 0.5;
+          const py = by + oy * (1 - r / rows) + z * dy * 0.5;
+          const alpha = 0.04 + Math.max(0, z / 30) * 0.18 + Math.max(0, 1 - dist * 2.5) * 0.12;
+
+          if (c < cols && r < rows) {
+            const nx = (c + 1) * cw + ox * (1 - (c + 1) / cols);
+            const ny = r * ch + oy * (1 - r / rows);
+            const bx2 = bx + ox * (1 - c / cols);
+            const by2 = (r + 1) * ch + oy * (1 - (r + 1) / rows);
+            ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(nx + z * dx * 0.5, ny + z * dy * 0.5);
+            ctx.strokeStyle = `rgba(123,110,246,${alpha})`; ctx.lineWidth = 0.5; ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(bx2 + z * dx * 0.5, by2 + z * dy * 0.5);
+            ctx.strokeStyle = `rgba(123,110,246,${alpha})`; ctx.lineWidth = 0.5; ctx.stroke();
+          }
+          if (lift > 5) {
+            ctx.beginPath(); ctx.arc(px, py, 1.5 + lift / 20, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(123,110,246,${lift / 60})`; ctx.fill();
+          }
+        }
+      }
+      t += 0.012;
+      animRef.current = requestAnimationFrame(drawGrid);
+    };
+    drawGrid();
+
+    return () => {
+      ro.disconnect();
+      document.removeEventListener('mousemove', onMouseMove);
+      cancelAnimationFrame(animRef.current);
+    };
+  }, []);
+
+  useEffect(() => {
+    const container = glyphsRef.current;
+    if (!container) return;
+    const codeChars = ['<', '>', '/', '{', '}', '()', '=>', '&&', '||', '++', '!==', '===', 'const', 'fn', 'async', '[]', '∞'];
+    const colors = ['rgba(123,110,246,.4)', 'rgba(232,121,249,.3)', 'rgba(6,182,212,.3)', 'rgba(16,185,129,.25)'];
+    for (let i = 0; i < 22; i++) {
+      const el = document.createElement('div');
+      el.className = 'hero-glyph';
+      el.textContent = codeChars[Math.floor(Math.random() * codeChars.length)];
+      el.style.cssText = `left:${Math.random() * 100}%;color:${colors[Math.floor(Math.random() * colors.length)]};animation-duration:${8 + Math.random() * 14}s;animation-delay:${Math.random() * 10}s`;
+      container.appendChild(el);
+    }
+    return () => { container.innerHTML = ''; };
+  }, []);
+
+  useEffect(() => {
+    const el = twRef.current;
+    if (!el) return;
+    const phrases = ['Software Developer', 'AI-First Engineer', 'Full Stack Developer', 'System Designer', 'React Native Developer'];
+    let pi = 0, ci = 0, deleting = false;
+    let timer: ReturnType<typeof setTimeout>;
+
+    const typeWrite = () => {
+      const phrase = phrases[pi];
+      if (!deleting) {
+        ci++;
+        el.innerHTML = phrase.slice(0, ci) + '<span class="hero-cursor"></span>';
+        if (ci === phrase.length) { deleting = true; timer = setTimeout(typeWrite, 1800); return; }
+        timer = setTimeout(typeWrite, 65 + Math.random() * 40);
+      } else {
+        ci--;
+        el.innerHTML = phrase.slice(0, ci) + '<span class="hero-cursor"></span>';
+        if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; timer = setTimeout(typeWrite, 300); return; }
+        timer = setTimeout(typeWrite, 35);
+      }
+    };
+    timer = setTimeout(typeWrite, 1200);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const countUp = (el: HTMLDivElement | null, target: number, suffix: string, dur: number) => {
+      if (!el) return;
+      let start: number | null = null;
+      const step = (ts: number) => {
+        if (!start) start = ts;
+        const p = Math.min((ts - start) / dur, 1);
+        const ease = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(ease * target) + suffix;
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
+    const t = setTimeout(() => {
+      countUp(s1Ref.current, 20, '+', 1200);
+      countUp(s2Ref.current, 15, '+', 1000);
+      countUp(s3Ref.current, 500, '+', 1400);
+    }, 1500);
+    return () => clearTimeout(t);
+  }, []);
+
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center relative bg-gray-900">
-      {/* Gradient Orbs */}
-      <motion.div 
-        className="absolute inset-0 overflow-hidden"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
-        <motion.div
-          className="absolute -top-48 -left-48 w-96 h-96 bg-purple-500/30 rounded-full blur-3xl"
-          animate={{
-            x: [0, 30, 0],
-            y: [0, -30, 0],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div
-          className="absolute -bottom-48 -right-48 w-96 h-96 bg-blue-500/30 rounded-full blur-3xl"
-          animate={{
-            x: [0, -30, 0],
-            y: [0, 30, 0],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1
-          }}
-        />
-      </motion.div>
+    <>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
-      <motion.div 
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center relative z-10"
-        variants={staggerContainer}
-        initial="initial"
-        animate="animate"
-      >
-        <div className="space-y-8">
-          <motion.h1 
-            className="text-5xl md:text-7xl font-bold"
-            variants={fadeInUp}
-          >
-            <motion.span 
-              className="block text-white opacity-90"
-              variants={fadeInUp}
-            >
-              Building the Future
-            </motion.span>
-            <motion.span 
-              className={`block ${gradientText}`}
-              variants={fadeInUp}
-            >
-              One Line of Code
-            </motion.span>
-            <motion.span 
-              className="block text-white opacity-90"
-              variants={fadeInUp}
-            >
-              at a Time
-            </motion.span>
-          </motion.h1>
+        #hero {
+          position: relative;
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+          background: #060608;
+        }
+        .hero-canvas {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+        }
+        .hero-orb {
+          position: absolute;
+          border-radius: 50%;
+          filter: blur(80px);
+          pointer-events: none;
+        }
+        .hero-orb1 {
+          width: 500px; height: 500px;
+          background: radial-gradient(circle, rgba(123,110,246,.22), transparent 70%);
+          top: -120px; left: -100px;
+          animation: heroOrbFloat1 10s ease-in-out infinite;
+        }
+        .hero-orb2 {
+          width: 400px; height: 400px;
+          background: radial-gradient(circle, rgba(232,121,249,.18), transparent 70%);
+          bottom: -80px; right: -80px;
+          animation: heroOrbFloat2 12s ease-in-out infinite;
+        }
+        .hero-orb3 {
+          width: 300px; height: 300px;
+          background: radial-gradient(circle, rgba(6,182,212,.15), transparent 70%);
+          top: 50%; left: 60%;
+          animation: heroOrbFloat1 14s ease-in-out infinite reverse;
+        }
+        @keyframes heroOrbFloat1 {
+          0%, 100% { transform: translate(0, 0); }
+          33%       { transform: translate(30px, -40px); }
+          66%       { transform: translate(-20px, 20px); }
+        }
+        @keyframes heroOrbFloat2 {
+          0%, 100% { transform: translate(0, 0); }
+          50%       { transform: translate(-40px, -30px); }
+        }
+        .hero-glyphs { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+        .hero-glyph {
+          position: absolute;
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 13px;
+          opacity: 0;
+          animation: heroGlyphFloat linear infinite;
+        }
+        @keyframes heroGlyphFloat {
+          0%   { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+          5%   { opacity: 0.5; }
+          90%  { opacity: 0.25; }
+          100% { transform: translateY(-20px) rotate(720deg); opacity: 0; }
+        }
+        .hero-content {
+          position: relative;
+          z-index: 10;
+          text-align: center;
+          padding: 2rem 1.5rem;
+          max-width: 900px;
+          margin: 0 auto;
+          font-family: 'Inter', sans-serif;
+        }
+        .hero-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: .35rem 1rem;
+          border-radius: 100px;
+          border: 1px solid rgba(123,110,246,.35);
+          background: rgba(123,110,246,.08);
+          font-size: .75rem;
+          font-weight: 500;
+          letter-spacing: .08em;
+          text-transform: uppercase;
+          color: rgba(255,255,255,.65);
+          margin-bottom: 2rem;
+          opacity: 0;
+          animation: heroFadeUp .7s .2s forwards;
+        }
+        .hero-badge-dot {
+          width: 6px; height: 6px; border-radius: 50%;
+          background: #10B981;
+          box-shadow: 0 0 8px #10B981;
+          animation: heroBadgePulse 2s infinite;
+        }
+        @keyframes heroBadgePulse { 0%, 100% { opacity: 1; } 50% { opacity: .4; } }
+        .hero-h1 {
+          font-family: 'Space Grotesk', sans-serif;
+          font-weight: 700;
+          line-height: 1.05;
+          letter-spacing: -2px;
+          margin-bottom: 1.75rem;
+        }
+        .hero-h1-line { display: block; overflow: hidden; }
+        .hero-h1-inner {
+          display: block;
+          font-size: clamp(3rem, 7vw, 5.5rem);
+          color: #fff;
+          opacity: .92;
+          transform: translateY(100%);
+          animation: heroLineReveal .8s cubic-bezier(.22,1,.36,1) forwards;
+        }
+        .hero-h1-line:nth-child(1) .hero-h1-inner { animation-delay: .4s; }
+        .hero-h1-line:nth-child(2) .hero-h1-inner { animation-delay: .55s; }
+        .hero-h1-line:nth-child(3) .hero-h1-inner { animation-delay: .7s; }
+        .hero-h1-grad {
+          background: linear-gradient(135deg, #7B6EF6 0%, #E879F9 50%, #06B6D4 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          background-size: 200% auto;
+          animation: heroGradFlow 4s linear infinite;
+        }
+        @keyframes heroGradFlow { 0% { background-position: 0%; } 100% { background-position: 200%; } }
+        @keyframes heroLineReveal { to { transform: translateY(0); } }
+        @keyframes heroFadeUp { to { opacity: 1; transform: none; } }
 
-          <motion.p 
-            className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto"
-            variants={fadeInUp}
-          >
-            Full Stack Developer | Software Enthusiast | Problem Solver
-          </motion.p>
+        .hero-typewriter-wrap {
+          margin-bottom: 2.5rem;
+          opacity: 0;
+          animation: heroFadeUp .6s .9s forwards;
+        }
+        .hero-typewriter {
+          font-size: clamp(.95rem, 2vw, 1.1rem);
+          color: rgba(255,255,255,.5);
+          letter-spacing: .03em;
+          font-weight: 300;
+          min-height: 1.6em;
+        }
+        .hero-cursor {
+          display: inline-block;
+          width: 2px;
+          height: 1em;
+          background: #7B6EF6;
+          margin-left: 3px;
+          vertical-align: middle;
+          animation: heroBlink .8s infinite;
+        }
+        @keyframes heroBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-          <motion.div 
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
-            variants={fadeInUp}
-          >
-            <motion.a
-              href="#projects"
-              className={`px-8 py-3 rounded-full text-white ${gradientBg} ${gradientHover} transition-all duration-300 shadow-lg shadow-purple-500/25`}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              View My Work
-            </motion.a>
-            <motion.a
-              href="#contact"
-              className="px-8 py-3 rounded-full text-white border-2 border-white/20 hover:bg-white/10 transition-all duration-300"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Contact Me
-            </motion.a>
-          </motion.div>
+        .hero-pills {
+          display: flex;
+          gap: .5rem;
+          justify-content: center;
+          flex-wrap: wrap;
+          margin-top: 1.25rem;
+          opacity: 0;
+          animation: heroFadeUp .6s 1.2s forwards;
+        }
+        .hero-pill {
+          padding: .25rem .75rem;
+          border-radius: 100px;
+          font-family: 'JetBrains Mono', monospace;
+          font-size: .7rem;
+          border: 1px solid;
+          transition: all .3s;
+          cursor: default;
+        }
+        .hero-pill:hover { transform: translateY(-2px) scale(1.05); }
+
+        .hero-btns {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 1rem;
+          flex-wrap: wrap;
+          margin-top: 2rem;
+          opacity: 0;
+          animation: heroFadeUp .6s 1.1s forwards;
+        }
+        .hero-btn-primary {
+          position: relative;
+          padding: .8rem 2rem;
+          border-radius: 100px;
+          background: linear-gradient(135deg, #7B6EF6, #E879F9);
+          color: #fff;
+          font-weight: 600;
+          font-size: .92rem;
+          letter-spacing: .02em;
+          text-decoration: none;
+          border: none;
+          cursor: pointer;
+          overflow: hidden;
+          transition: transform .25s, box-shadow .25s;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+        }
+        .hero-btn-primary::before {
+          content: '';
+          position: absolute; inset: 0;
+          background: linear-gradient(135deg, #E879F9, #06B6D4);
+          opacity: 0;
+          transition: opacity .3s;
+        }
+        .hero-btn-primary:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 16px 40px rgba(123,110,246,.45); }
+        .hero-btn-primary:hover::before { opacity: 1; }
+        .hero-btn-primary span { position: relative; z-index: 1; }
+        .hero-btn-secondary {
+          padding: .8rem 2rem;
+          border-radius: 100px;
+          border: 1px solid rgba(255,255,255,.18);
+          background: rgba(255,255,255,.04);
+          color: rgba(255,255,255,.8);
+          font-weight: 500;
+          font-size: .92rem;
+          letter-spacing: .02em;
+          text-decoration: none;
+          transition: all .25s;
+          backdrop-filter: blur(8px);
+        }
+        .hero-btn-secondary:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.35); transform: translateY(-3px); color: #fff; }
+
+        .hero-stats {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 2.5rem;
+          margin-top: 3rem;
+          opacity: 0;
+          animation: heroFadeUp .6s 1.3s forwards;
+          flex-wrap: wrap;
+        }
+        .hero-stat-item { text-align: center; }
+        .hero-stat-num {
+          font-family: 'Space Grotesk', sans-serif;
+          font-size: 1.75rem;
+          font-weight: 700;
+          background: linear-gradient(135deg, #fff, rgba(255,255,255,.6));
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          line-height: 1;
+        }
+        .hero-stat-label {
+          font-size: .72rem;
+          color: rgba(255,255,255,.35);
+          letter-spacing: .1em;
+          text-transform: uppercase;
+          margin-top: .25rem;
+        }
+        .hero-stat-div { width: 1px; height: 40px; background: rgba(255,255,255,.1); }
+
+        .hero-scroll {
+          position: absolute;
+          bottom: 2rem;
+          left: 50%;
+          transform: translateX(-50%);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: .5rem;
+          opacity: 0;
+          animation: heroFadeUp .6s 1.6s forwards;
+        }
+        .hero-scroll-line {
+          width: 1px; height: 50px;
+          background: linear-gradient(to bottom, rgba(123,110,246,.8), transparent);
+          animation: heroScrollPulse 2s ease-in-out infinite;
+        }
+        @keyframes heroScrollPulse {
+          0%, 100% { transform: scaleY(1); opacity: .6; }
+          50%       { transform: scaleY(1.3); opacity: 1; }
+        }
+        .hero-scroll-text {
+          font-size: .65rem;
+          letter-spacing: .15em;
+          text-transform: uppercase;
+          color: rgba(255,255,255,.3);
+        }
+      `}</style>
+
+      <section id="hero">
+        <canvas ref={canvasRef} className="hero-canvas" />
+        <div className="hero-orb hero-orb1" />
+        <div className="hero-orb hero-orb2" />
+        <div className="hero-orb hero-orb3" />
+        <div ref={glyphsRef} className="hero-glyphs" />
+
+        <div className="hero-content">
+          <div className="hero-badge">
+            <span className="hero-badge-dot" />
+            Available for work
+          </div>
+
+          <h1 className="hero-h1">
+            <span className="hero-h1-line"><span className="hero-h1-inner">Building the Future</span></span>
+            <span className="hero-h1-line"><span className="hero-h1-inner hero-h1-grad">One Line of Code</span></span>
+            <span className="hero-h1-line"><span className="hero-h1-inner">at a Time</span></span>
+          </h1>
+
+          <div className="hero-typewriter-wrap">
+            <div ref={twRef} className="hero-typewriter">
+              <span className="hero-cursor" />
+            </div>
+          </div>
+
+          <div className="hero-pills">
+            {[
+              { label: 'React',      color: '#7B6EF6' },
+              { label: 'NestJS',     color: '#E879F9' },
+              { label: 'TypeScript', color: '#06B6D4' },
+              { label: 'FastAPI',    color: '#10B981' },
+              { label: 'Next.js',    color: '#FBBF24' },
+            ].map(({ label, color }) => (
+              <span
+                key={label}
+                className="hero-pill"
+                style={{ color, borderColor: `${color}55`, background: `${color}12` }}
+              >
+                {label}
+              </span>
+            ))}
+          </div>
+
+          <div className="hero-btns">
+            <a href="#projects" className="hero-btn-primary">
+              <span>View My Work</span>
+              <span>↗</span>
+            </a>
+            <a href="#contact" className="hero-btn-secondary">Let's Talk</a>
+          </div>
+
+          <div className="hero-stats">
+            <div className="hero-stat-item">
+              <div ref={s1Ref} className="hero-stat-num">0+</div>
+              <div className="hero-stat-label">Projects Built</div>
+            </div>
+            <div className="hero-stat-div" />
+            <div className="hero-stat-item">
+              <div ref={s2Ref} className="hero-stat-num">0+</div>
+              <div className="hero-stat-label">Technologies</div>
+            </div>
+            <div className="hero-stat-div" />
+            <div className="hero-stat-item">
+              <div ref={s3Ref} className="hero-stat-num">0+</div>
+              <div className="hero-stat-label">Commits</div>
+            </div>
+          </div>
         </div>
 
-        <motion.div 
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-        >
-          <motion.div
-            animate={{
-              y: [0, 10, 0],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          >
-            <ArrowDown className="w-6 h-6 text-white/70" />
-          </motion.div>
-        </motion.div>
-      </motion.div>
-
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900/50" />
-    </section>
+        <div className="hero-scroll">
+          <span className="hero-scroll-text">Scroll</span>
+          <div className="hero-scroll-line" />
+        </div>
+      </section>
+    </>
   );
 }
