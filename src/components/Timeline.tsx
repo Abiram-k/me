@@ -39,8 +39,8 @@ const timelineData: TimelineItem[] = [
     description:
       "Optimizing legacy codebases and building production web/mobile apps with AI agents, LLM/RAG workflows, and React Native (Expo). Leading development on Ajrasakha — an AI-powered agricultural advisory platform handling 25k+ domain-specific queries.",
     icon: "work",
-    accent: "rgba(6,182,212,0.18)",
-    color: "#06B6D4",
+    accent: "rgba(16,185,129,0.18)",
+    color: "#10B981",
   },
 ];
 
