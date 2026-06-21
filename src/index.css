@@ -5,3 +5,214 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* Color Themes system */
+:root {
+  /* Default: Midnight Purple */
+  --bg-primary: #060608;
+  --bg-secondary: #0b0b10;
+  --text-primary: #eaeaf0;
+  --text-secondary: rgba(234, 234, 240, 0.65);
+  --text-muted: rgba(234, 234, 240, 0.45);
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --card-border: rgba(255, 255, 255, 0.07);
+  --accent-1: #7b6ef6;
+  --accent-2: #e879f9;
+  --accent-3: #06b6d4;
+  --glass-bg: rgba(8, 8, 14, 0.72);
+  --glass-border: rgba(123, 110, 246, 0.15);
+  --orb-1: rgba(123, 110, 246, 0.22);
+  --orb-2: rgba(232, 121, 249, 0.18);
+  --orb-3: rgba(6, 182, 212, 0.15);
+  transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+/* 1. Midnight Purple (Default) */
+.theme-midnight {
+  --bg-primary: #060608;
+  --bg-secondary: #0b0b10;
+  --text-primary: #eaeaf0;
+  --text-secondary: rgba(234, 234, 240, 0.65);
+  --text-muted: rgba(234, 234, 240, 0.45);
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --card-border: rgba(255, 255, 255, 0.07);
+  --accent-1: #7b6ef6;
+  --accent-2: #e879f9;
+  --accent-3: #06b6d4;
+  --glass-bg: rgba(8, 8, 14, 0.72);
+  --glass-border: rgba(123, 110, 246, 0.15);
+  --orb-1: rgba(123, 110, 246, 0.22);
+  --orb-2: rgba(232, 121, 249, 0.18);
+  --orb-3: rgba(6, 182, 212, 0.15);
+}
+
+/* 2. Cyberpunk Neon */
+.theme-cyberpunk {
+  --bg-primary: #0a0512;
+  --bg-secondary: #120b24;
+  --text-primary: #00ffcc;
+  --text-secondary: #ff0055;
+  --text-muted: #fbf624;
+  --card-bg: rgba(255, 0, 85, 0.03);
+  --card-border: rgba(0, 255, 204, 0.15);
+  --accent-1: #ff0055;
+  --accent-2: #00ffcc;
+  --accent-3: #fbf624;
+  --glass-bg: rgba(10, 5, 18, 0.82);
+  --glass-border: rgba(0, 255, 204, 0.25);
+  --orb-1: rgba(255, 0, 85, 0.2);
+  --orb-2: rgba(0, 255, 204, 0.18);
+  --orb-3: rgba(251, 246, 36, 0.12);
+}
+
+/* 3. Ocean Breeze */
+.theme-ocean {
+  --bg-primary: #04101e;
+  --bg-secondary: #081a30;
+  --text-primary: #e0f2fe;
+  --text-secondary: rgba(224, 242, 254, 0.65);
+  --text-muted: rgba(224, 242, 254, 0.45);
+  --card-bg: rgba(255, 255, 255, 0.025);
+  --card-border: rgba(14, 165, 233, 0.12);
+  --accent-1: #0ea5e9;
+  --accent-2: #06b6d4;
+  --accent-3: #14b8a6;
+  --glass-bg: rgba(4, 16, 30, 0.78);
+  --glass-border: rgba(14, 165, 233, 0.2);
+  --orb-1: rgba(14, 165, 233, 0.2);
+  --orb-2: rgba(6, 182, 212, 0.15);
+  --orb-3: rgba(20, 184, 166, 0.12);
+}
+
+/* 4. Forest Moss */
+.theme-forest {
+  --bg-primary: #08120c;
+  --bg-secondary: #0f1e14;
+  --text-primary: #f0fdf4;
+  --text-secondary: rgba(240, 253, 244, 0.65);
+  --text-muted: rgba(240, 253, 244, 0.45);
+  --card-bg: rgba(255, 255, 255, 0.025);
+  --card-border: rgba(16, 185, 129, 0.12);
+  --accent-1: #10b981;
+  --accent-2: #84cc16;
+  --accent-3: #10b981;
+  --glass-bg: rgba(8, 18, 12, 0.78);
+  --glass-border: rgba(16, 185, 129, 0.2);
+  --orb-1: rgba(16, 185, 129, 0.2);
+  --orb-2: rgba(132, 204, 22, 0.15);
+  --orb-3: rgba(16, 185, 129, 0.12);
+}
+
+/* 5. Sunset Amber */
+.theme-sunset {
+  --bg-primary: #120905;
+  --bg-secondary: #20110a;
+  --text-primary: #fef3c7;
+  --text-secondary: rgba(254, 243, 199, 0.65);
+  --text-muted: rgba(254, 243, 199, 0.45);
+  --card-bg: rgba(255, 255, 255, 0.025);
+  --card-border: rgba(245, 158, 11, 0.12);
+  --accent-1: #f59e0b;
+  --accent-2: #f97316;
+  --accent-3: #ef4444;
+  --glass-bg: rgba(18, 9, 5, 0.78);
+  --glass-border: rgba(245, 158, 11, 0.2);
+  --orb-1: rgba(245, 158, 11, 0.2);
+  --orb-2: rgba(249, 115, 22, 0.15);
+  --orb-3: rgba(239, 68, 68, 0.12);
+}
+
+/* 6. Rose Quartz */
+.theme-rose {
+  --bg-primary: #14050b;
+  --bg-secondary: #240b17;
+  --text-primary: #ffe4e6;
+  --text-secondary: rgba(255, 228, 230, 0.65);
+  --text-muted: rgba(255, 228, 230, 0.45);
+  --card-bg: rgba(255, 255, 255, 0.025);
+  --card-border: rgba(244, 63, 94, 0.12);
+  --accent-1: #f43f5e;
+  --accent-2: #d946ef;
+  --accent-3: #db2777;
+  --glass-bg: rgba(20, 5, 11, 0.78);
+  --glass-border: rgba(244, 63, 94, 0.2);
+  --orb-1: rgba(244, 63, 94, 0.2);
+  --orb-2: rgba(217, 70, 239, 0.15);
+  --orb-3: rgba(219, 39, 119, 0.12);
+}
+
+/* 7. Clean Light */
+.theme-light {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: rgba(15, 23, 42, 0.75);
+  --text-muted: rgba(15, 23, 42, 0.55);
+  --card-bg: rgba(15, 23, 42, 0.025);
+  --card-border: rgba(15, 23, 42, 0.08);
+  --accent-1: #4f46e5;
+  --accent-2: #7c3aed;
+  --accent-3: #0284c7;
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(79, 70, 229, 0.2);
+  --orb-1: rgba(79, 70, 229, 0.08);
+  --orb-2: rgba(124, 58, 237, 0.06);
+  --orb-3: rgba(2, 132, 199, 0.05);
+}
+
+/* 8. Nordic Frost */
+.theme-nordic {
+  --bg-primary: #f0f4f8;
+  --bg-secondary: #ffffff;
+  --text-primary: #1b2d42;
+  --text-secondary: rgba(27, 45, 66, 0.75);
+  --text-muted: rgba(27, 45, 66, 0.55);
+  --card-bg: rgba(27, 45, 66, 0.025);
+  --card-border: rgba(27, 45, 66, 0.08);
+  --accent-1: #2b6cb0;
+  --accent-2: #319795;
+  --accent-3: #4a5568;
+  --glass-bg: rgba(240, 244, 248, 0.85);
+  --glass-border: rgba(27, 45, 66, 0.18);
+  --orb-1: rgba(43, 108, 176, 0.08);
+  --orb-2: rgba(49, 151, 149, 0.06);
+  --orb-3: rgba(74, 85, 104, 0.05);
+}
+
+/* 9. Warm Cream */
+.theme-cream {
+  --bg-primary: #faf8f5;
+  --bg-secondary: #ffffff;
+  --text-primary: #2d241e;
+  --text-secondary: rgba(45, 36, 30, 0.75);
+  --text-muted: rgba(45, 36, 30, 0.55);
+  --card-bg: rgba(45, 36, 30, 0.025);
+  --card-border: rgba(45, 36, 30, 0.08);
+  --accent-1: #c05621;
+  --accent-2: #7b341e;
+  --accent-3: #9c4221;
+  --glass-bg: rgba(250, 248, 245, 0.85);
+  --glass-border: rgba(192, 86, 33, 0.18);
+  --orb-1: rgba(192, 86, 33, 0.08);
+  --orb-2: rgba(123, 52, 30, 0.06);
+  --orb-3: rgba(156, 66, 33, 0.05);
+}
+
+/* 10. Sakura Blossom */
+.theme-sakura {
+  --bg-primary: #fff5f7;
+  --bg-secondary: #ffffff;
+  --text-primary: #4a1525;
+  --text-secondary: rgba(74, 21, 37, 0.75);
+  --text-muted: rgba(74, 21, 37, 0.55);
+  --card-bg: rgba(74, 21, 37, 0.025);
+  --card-border: rgba(74, 21, 37, 0.08);
+  --accent-1: #d53f8c;
+  --accent-2: #97266d;
+  --accent-3: #b83280;
+  --glass-bg: rgba(255, 245, 247, 0.85);
+  --glass-border: rgba(213, 63, 140, 0.18);
+  --orb-1: rgba(213, 63, 140, 0.08);
+  --orb-2: rgba(151, 38, 109, 0.06);
+  --orb-3: rgba(184, 50, 128, 0.05);
+}

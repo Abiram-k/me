@@ -1,12 +1,34 @@
 import { useState, useEffect, useRef } from 'react';
 
+const themes = [
+  { id: 'midnight', name: 'Midnight Purple', preview: 'linear-gradient(135deg, #7B6EF6, #E879F9)' },
+  { id: 'cyberpunk', name: 'Cyberpunk', preview: 'linear-gradient(135deg, #ff0055, #00ffcc)' },
+  { id: 'ocean', name: 'Ocean Breeze', preview: 'linear-gradient(135deg, #0ea5e9, #06b6d4)' },
+  { id: 'forest', name: 'Forest Moss', preview: 'linear-gradient(135deg, #10b981, #84cc16)' },
+  { id: 'sunset', name: 'Sunset Amber', preview: 'linear-gradient(135deg, #f59e0b, #f97316)' },
+  { id: 'rose', name: 'Rose Quartz', preview: 'linear-gradient(135deg, #f43f5e, #d946ef)' },
+  { id: 'light', name: 'Clean Light', preview: 'linear-gradient(135deg, #4f46e5, #7c3aed)' },
+  { id: 'nordic', name: 'Nordic Frost', preview: 'linear-gradient(135deg, #2b6cb0, #319795)' },
+  { id: 'cream', name: 'Warm Cream', preview: 'linear-gradient(135deg, #c05621, #7b341e)' },
+  { id: 'sakura', name: 'Sakura Blossom', preview: 'linear-gradient(135deg, #d53f8c, #97266d)' }
+];
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeTheme, setActiveTheme] = useState(() => localStorage.getItem('portfolio-theme') || 'midnight');
+  const [showPicker, setShowPicker] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
   const animRef = useRef<number>(0);
   const bgAnimRef = useRef<number>(0);
+
+  useEffect(() => {
+    const classes = document.documentElement.className.split(' ').filter(c => !c.startsWith('theme-'));
+    classes.push(`theme-${activeTheme}`);
+    document.documentElement.className = classes.join(' ').trim();
+    localStorage.setItem('portfolio-theme', activeTheme);
+  }, [activeTheme]);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 30);
@@ -110,12 +132,12 @@ export default function Navbar() {
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
         :root {
-          --c1: #7B6EF6;
-          --c2: #E879F9;
-          --c3: #06B6D4;
-          --glass: rgba(8, 8, 14, 0.72);
-          --glow1: rgba(123, 110, 246, 0.18);
-          --glow2: rgba(232, 121, 249, 0.12);
+          --c1: var(--accent-1);
+          --c2: var(--accent-2);
+          --c3: var(--accent-3);
+          --glass: var(--glass-bg);
+          --glow1: var(--orb-1);
+          --glow2: var(--orb-2);
         }
 
         .nb-canvas {
@@ -139,13 +161,13 @@ export default function Navbar() {
           padding: 0 2.5rem;
           background: var(--glass);
           backdrop-filter: blur(24px) saturate(180%);
-          border-bottom: 1px solid rgba(123, 110, 246, 0.15);
+          border-bottom: 1px solid var(--glass-border);
           transition: height 0.4s ease, border-color 0.4s ease;
           font-family: 'Inter', sans-serif;
         }
         .nb-nav.scrolled {
           height: 58px;
-          border-bottom-color: rgba(123, 110, 246, 0.28);
+          border-bottom-color: var(--accent-1);
         }
         .nb-nav::before {
           content: '';position: absolute;inset: 0;
@@ -189,7 +211,7 @@ export default function Navbar() {
         .nb-link {
           position: relative; padding: 0.5rem 1.1rem;
           font-size: 0.875rem; font-weight: 500; letter-spacing: 0.02em;
-          color: rgba(255, 255, 255, 0.6); text-decoration: none;
+          color: var(--text-secondary); text-decoration: none;
           transition: color 0.3s ease; border-radius: 8px; overflow: hidden;
         }
         .nb-link::before {
@@ -223,20 +245,20 @@ export default function Navbar() {
         .nb-social {
           width: 34px; height: 34px; border-radius: 8px;
           display: flex; align-items: center; justify-content: center;
-          color: rgba(255, 255, 255, 0.5); text-decoration: none;
-          border: 1px solid rgba(255, 255, 255, 0.07);
+          color: var(--text-secondary); text-decoration: none;
+          border: 1px solid var(--card-border);
           transition: all 0.3s ease; position: relative; overflow: hidden;
         }
         .nb-social::before {
           content: ''; position: absolute; inset: 0;
-          background: radial-gradient(circle at center, var(--c1) 0%, transparent 70%);
+          background: radial-gradient(circle at center, var(--accent-1) 0%, transparent 70%);
           opacity: 0; transition: opacity 0.3s ease;
         }
         .nb-social:hover {
-          color: #fff;
-          border-color: rgba(123, 110, 246, 0.5);
+          color: var(--text-primary);
+          border-color: var(--accent-1);
           transform: translateY(-3px) scale(1.08);
-          box-shadow: 0 8px 20px rgba(123, 110, 246, 0.3);
+          box-shadow: 0 8px 20px color-mix(in srgb, var(--accent-1) 25%, transparent);
         }
         .nb-social:hover::before { opacity: 0.15; }
         .nb-social svg { width: 15px; height: 15px; position: relative; z-index: 1; }
@@ -295,9 +317,9 @@ export default function Navbar() {
 
         .nb-mobile-menu {
           position: fixed; top: 70px; left: 0; right: 0;
-          background: rgba(8, 8, 14, 0.96);
-          backdrop-filter: blur(20px);
-          border-bottom: 1px solid rgba(123, 110, 246, 0.15);
+          background: var(--glass-bg);
+          backdrop-filter: blur(24px) saturate(180%);
+          border-bottom: 1px solid var(--glass-border);
           padding: 1.5rem 2.5rem 2rem;
           z-index: 99;
           transform: translateY(-8px); opacity: 0; pointer-events: none;
@@ -309,12 +331,78 @@ export default function Navbar() {
         .nb-mobile-link {
           display: block; padding: 0.75rem 0;
           font-size: 1.1rem; font-weight: 500;
-          color: rgba(255, 255, 255, 0.7); text-decoration: none;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+          color: var(--text-secondary); text-decoration: none;
+          border-bottom: 1px solid var(--card-border);
           transition: all 0.3s ease;
         }
-        .nb-mobile-link:hover { color: #fff; padding-left: 8px; }
+        .nb-mobile-link:hover { color: var(--text-primary); padding-left: 8px; }
         .nb-mobile-socials { display: flex; gap: 0.75rem; margin-top: 1.5rem; }
+
+        .nb-palette-btn {
+          width: 34px; height: 34px; border-radius: 8px;
+          display: flex; align-items: center; justify-content: center;
+          color: var(--text-secondary);
+          background: rgba(255, 255, 255, 0.04);
+          border: 1px solid var(--card-border);
+          transition: all 0.3s ease; position: relative; cursor: pointer;
+        }
+        .nb-palette-btn:hover, .nb-palette-btn.active {
+          color: var(--text-primary);
+          border-color: var(--accent-1);
+          transform: scale(1.08);
+          box-shadow: 0 4px 15px color-mix(in srgb, var(--accent-1) 25%, transparent);
+        }
+        .nb-theme-dropdown {
+          position: absolute;
+          top: 80px; right: 2.5rem;
+          background: var(--glass-bg);
+          backdrop-filter: blur(24px) saturate(180%);
+          border: 1px solid var(--glass-border);
+          border-radius: 12px;
+          padding: 0.75rem;
+          width: 240px;
+          z-index: 1000;
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 4px;
+          box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+          animation: nb-fadeIn 0.25s ease-out;
+        }
+        @keyframes nb-fadeIn {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .nb-theme-item {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 8px 12px;
+          border-radius: 8px;
+          background: transparent;
+          border: none;
+          color: var(--text-secondary);
+          font-family: 'Inter', sans-serif;
+          font-size: 0.8rem;
+          font-weight: 500;
+          text-align: left;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          width: 100%;
+        }
+        .nb-theme-item:hover {
+          background: rgba(255,255,255,0.06);
+          color: var(--text-primary);
+          padding-left: 16px;
+        }
+        .nb-theme-item.active {
+          background: color-mix(in srgb, var(--accent-1) 15%, transparent);
+          color: var(--accent-1);
+        }
+        .nb-theme-dot {
+          width: 12px; height: 12px; border-radius: 50%;
+          flex-shrink: 0;
+          border: 1px solid rgba(255,255,255,0.2);
+        }
 
         @media (max-width: 768px) {
           .nb-links { display: none; }
@@ -377,7 +465,40 @@ export default function Navbar() {
                 <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
               </svg>
             </a>
+
+            <button
+              className={`nb-palette-btn${showPicker ? ' active' : ''}`}
+              onClick={() => setShowPicker(!showPicker)}
+              aria-label="Switch Theme"
+              title="Switch Theme"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 14.7255 3.09032 17.1962 4.85857 19C5.3784 19.5198 5.42445 20.3552 5.02237 20.9316C4.85338 21.1739 4.89679 21.5034 5.12151 21.6961C5.35266 21.8943 5.68884 21.9961 6 22H12Z" />
+                <circle cx="7.5" cy="10.5" r="1.5" fill="currentColor" />
+                <circle cx="11.5" cy="7.5" r="1.5" fill="currentColor" />
+                <circle cx="16.5" cy="9.5" r="1.5" fill="currentColor" />
+                <circle cx="15.5" cy="14.5" r="1.5" fill="currentColor" />
+              </svg>
+            </button>
           </div>
+
+          {showPicker && (
+            <div className="nb-theme-dropdown">
+              {themes.map(t => (
+                <button
+                  key={t.id}
+                  className={`nb-theme-item${activeTheme === t.id ? ' active' : ''}`}
+                  onClick={() => {
+                    setActiveTheme(t.id);
+                    setShowPicker(false);
+                  }}
+                >
+                  <span className="nb-theme-dot" style={{ background: t.preview }} />
+                  {t.name}
+                </button>
+              ))}
+            </div>
+          )}
 
           <a href="/me/Abiram_K_Resume_updated.pdf" target="_blank" rel="noopener noreferrer" className="nb-resume-btn">
             <span>Resume</span><span>↗</span>
@@ -434,6 +555,29 @@ export default function Navbar() {
               <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
             </svg>
           </a>
+        </div>
+
+        <div style={{ marginTop: '1.5rem', paddingTop: '1rem', borderTop: '1px solid var(--card-border)' }}>
+          <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontFamily: 'JetBrains Mono, monospace', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.75rem' }}>Themes</div>
+          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+            {themes.map(t => (
+              <button
+                key={t.id}
+                onClick={() => setActiveTheme(t.id)}
+                style={{
+                  width: '26px', height: '26px', borderRadius: '50%',
+                  background: t.preview,
+                  border: activeTheme === t.id ? '2px solid var(--text-primary)' : '1px solid rgba(255,255,255,0.2)',
+                  cursor: 'pointer',
+                  transition: 'transform 0.2s',
+                  transform: activeTheme === t.id ? 'scale(1.15)' : 'none',
+                  boxShadow: activeTheme === t.id ? '0 0 10px var(--accent-1)' : 'none'
+                }}
+                title={t.name}
+                aria-label={t.name}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </>

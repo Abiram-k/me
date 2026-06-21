@@ -148,7 +148,7 @@ export default function Hero() {
           align-items: center;
           justify-content: center;
           overflow: hidden;
-          background: #060608;
+          background: var(--bg-primary);
         }
         .hero-canvas {
           position: absolute;
@@ -164,19 +164,19 @@ export default function Hero() {
         }
         .hero-orb1 {
           width: 500px; height: 500px;
-          background: radial-gradient(circle, rgba(123,110,246,.22), transparent 70%);
+          background: radial-gradient(circle, var(--orb-1), transparent 70%);
           top: -120px; left: -100px;
           animation: heroOrbFloat1 10s ease-in-out infinite;
         }
         .hero-orb2 {
           width: 400px; height: 400px;
-          background: radial-gradient(circle, rgba(232,121,249,.18), transparent 70%);
+          background: radial-gradient(circle, var(--orb-2), transparent 70%);
           bottom: -80px; right: -80px;
           animation: heroOrbFloat2 12s ease-in-out infinite;
         }
         .hero-orb3 {
           width: 300px; height: 300px;
-          background: radial-gradient(circle, rgba(6,182,212,.15), transparent 70%);
+          background: radial-gradient(circle, var(--orb-3), transparent 70%);
           top: 50%; left: 60%;
           animation: heroOrbFloat1 14s ease-in-out infinite reverse;
         }
@@ -218,13 +218,13 @@ export default function Hero() {
           gap: 8px;
           padding: .35rem 1rem;
           border-radius: 100px;
-          border: 1px solid rgba(123,110,246,.35);
-          background: rgba(123,110,246,.08);
+          border: 1px solid var(--accent-1);
+          background: var(--card-bg);
           font-size: .75rem;
           font-weight: 500;
           letter-spacing: .08em;
           text-transform: uppercase;
-          color: rgba(255,255,255,.65);
+          color: var(--text-secondary);
           margin-bottom: 2rem;
           opacity: 0;
           animation: heroFadeUp .7s .2s forwards;
@@ -247,7 +247,7 @@ export default function Hero() {
         .hero-h1-inner {
           display: block;
           font-size: clamp(3rem, 7vw, 5.5rem);
-          color: #fff;
+          color: var(--text-primary);
           opacity: .92;
           transform: translateY(100%);
           animation: heroLineReveal .8s cubic-bezier(.22,1,.36,1) forwards;
@@ -256,7 +256,7 @@ export default function Hero() {
         .hero-h1-line:nth-child(2) .hero-h1-inner { animation-delay: .55s; }
         .hero-h1-line:nth-child(3) .hero-h1-inner { animation-delay: .7s; }
         .hero-h1-grad {
-          background: linear-gradient(135deg, #7B6EF6 0%, #E879F9 50%, #06B6D4 100%);
+          background: linear-gradient(135deg, var(--accent-1) 0%, var(--accent-2) 50%, var(--accent-3) 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -266,7 +266,7 @@ export default function Hero() {
         @keyframes heroGradFlow { 0% { background-position: 0%; } 100% { background-position: 200%; } }
         @keyframes heroLineReveal { to { transform: translateY(0); } }
         @keyframes heroFadeUp { to { opacity: 1; transform: none; } }
-
+ 
         .hero-typewriter-wrap {
           margin-bottom: 2.5rem;
           opacity: 0;
@@ -274,7 +274,7 @@ export default function Hero() {
         }
         .hero-typewriter {
           font-size: clamp(.95rem, 2vw, 1.1rem);
-          color: rgba(255,255,255,.5);
+          color: var(--text-secondary);
           letter-spacing: .03em;
           font-weight: 300;
           min-height: 1.6em;
@@ -283,13 +283,13 @@ export default function Hero() {
           display: inline-block;
           width: 2px;
           height: 1em;
-          background: #7B6EF6;
+          background: var(--accent-1);
           margin-left: 3px;
           vertical-align: middle;
           animation: heroBlink .8s infinite;
         }
         @keyframes heroBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-
+ 
         .hero-pills {
           display: flex;
           gap: .5rem;
@@ -309,7 +309,7 @@ export default function Hero() {
           cursor: default;
         }
         .hero-pill:hover { transform: translateY(-2px) scale(1.05); }
-
+ 
         .hero-btns {
           display: flex;
           align-items: center;
@@ -324,7 +324,7 @@ export default function Hero() {
           position: relative;
           padding: .8rem 2rem;
           border-radius: 100px;
-          background: linear-gradient(135deg, #7B6EF6, #E879F9);
+          background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
           color: #fff;
           font-weight: 600;
           font-size: .92rem;
@@ -341,19 +341,19 @@ export default function Hero() {
         .hero-btn-primary::before {
           content: '';
           position: absolute; inset: 0;
-          background: linear-gradient(135deg, #E879F9, #06B6D4);
+          background: linear-gradient(135deg, var(--accent-2), var(--accent-3));
           opacity: 0;
           transition: opacity .3s;
         }
-        .hero-btn-primary:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 16px 40px rgba(123,110,246,.45); }
+        .hero-btn-primary:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 16px 40px color-mix(in srgb, var(--accent-1) 35%, transparent); }
         .hero-btn-primary:hover::before { opacity: 1; }
         .hero-btn-primary span { position: relative; z-index: 1; }
         .hero-btn-secondary {
           padding: .8rem 2rem;
           border-radius: 100px;
-          border: 1px solid rgba(255,255,255,.18);
-          background: rgba(255,255,255,.04);
-          color: rgba(255,255,255,.8);
+          border: 1px solid var(--card-border);
+          background: var(--card-bg);
+          color: var(--text-secondary);
           font-weight: 500;
           font-size: .92rem;
           letter-spacing: .02em;
@@ -361,8 +361,8 @@ export default function Hero() {
           transition: all .25s;
           backdrop-filter: blur(8px);
         }
-        .hero-btn-secondary:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.35); transform: translateY(-3px); color: #fff; }
-
+        .hero-btn-secondary:hover { background: color-mix(in srgb, var(--accent-1) 12%, transparent); border-color: var(--accent-1); transform: translateY(-3px); color: var(--text-primary); }
+ 
         .hero-stats {
           display: flex;
           align-items: center;
@@ -378,7 +378,7 @@ export default function Hero() {
           font-family: 'Space Grotesk', sans-serif;
           font-size: 1.75rem;
           font-weight: 700;
-          background: linear-gradient(135deg, #fff, rgba(255,255,255,.6));
+          background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -386,13 +386,13 @@ export default function Hero() {
         }
         .hero-stat-label {
           font-size: .72rem;
-          color: rgba(255,255,255,.35);
+          color: var(--text-muted);
           letter-spacing: .1em;
           text-transform: uppercase;
           margin-top: .25rem;
         }
-        .hero-stat-div { width: 1px; height: 40px; background: rgba(255,255,255,.1); }
-
+        .hero-stat-div { width: 1px; height: 40px; background: var(--card-border); }
+ 
         .hero-scroll {
           position: absolute;
           bottom: 2rem;
@@ -407,7 +407,7 @@ export default function Hero() {
         }
         .hero-scroll-line {
           width: 1px; height: 50px;
-          background: linear-gradient(to bottom, rgba(123,110,246,.8), transparent);
+          background: linear-gradient(to bottom, var(--accent-1), transparent);
           animation: heroScrollPulse 2s ease-in-out infinite;
         }
         @keyframes heroScrollPulse {
@@ -418,7 +418,7 @@ export default function Hero() {
           font-size: .65rem;
           letter-spacing: .15em;
           text-transform: uppercase;
-          color: rgba(255,255,255,.3);
+          color: var(--text-muted);
         }
       `}</style>
 

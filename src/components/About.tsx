@@ -70,8 +70,8 @@ export default function About() {
         .ab-section {
           position: relative;
           padding: 96px 24px;
-          background: #060608;
-          color: #EAEAF0;
+          background: var(--bg-primary);
+          color: var(--text-primary);
           font-family: 'Inter', system-ui, sans-serif;
           overflow: hidden;
         }
@@ -79,18 +79,18 @@ export default function About() {
           content: '';
           position: absolute; inset: 0;
           background:
-            radial-gradient(700px 350px at 15% 30%, rgba(123,110,246,0.07), transparent 60%),
-            radial-gradient(600px 350px at 85% 70%, rgba(78,205,196,0.05), transparent 60%);
+            radial-gradient(700px 350px at 15% 30%, var(--orb-1), transparent 60%),
+            radial-gradient(600px 350px at 85% 70%, var(--orb-2), transparent 60%);
           pointer-events: none;
         }
         .ab-container { max-width: 1100px; margin: 0 auto; position: relative; }
-
+ 
         .ab-head { text-align: center; margin-bottom: 56px; }
         .ab-eyebrow {
           font-family: 'JetBrains Mono', monospace;
           font-size: 12px;
           letter-spacing: 0.2em;
-          color: #7B6EF6;
+          color: var(--accent-1);
           text-transform: uppercase;
           margin-bottom: 16px;
         }
@@ -103,7 +103,7 @@ export default function About() {
           margin: 0;
         }
         .ab-heading .grad {
-          background: linear-gradient(90deg, #7B6EF6, #E879F9, #06B6D4, #7B6EF6);
+          background: linear-gradient(90deg, var(--accent-1), var(--accent-2), var(--accent-3), var(--accent-1));
           background-size: 200% auto;
           -webkit-background-clip: text;
           background-clip: text;
@@ -111,7 +111,7 @@ export default function About() {
           animation: abGradFlow 8s linear infinite;
         }
         @keyframes abGradFlow { to { background-position: 200% center; } }
-
+ 
         .ab-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -121,28 +121,28 @@ export default function About() {
         @media (max-width: 800px) {
           .ab-grid { grid-template-columns: 1fr; gap: 40px; }
         }
-
+ 
         /* Image side */
         .ab-visual {
           position: relative;
           border-radius: 20px;
           overflow: hidden;
           aspect-ratio: 1 / 1;
-          border: 1px solid rgba(255,255,255,0.07);
+          border: 1px solid var(--card-border);
           opacity: 0;
           animation: abFadeUp .7s .1s cubic-bezier(.2,.7,.2,1) forwards;
         }
         .ab-visual-grid {
           position: absolute; inset: 0;
           background-image:
-            linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+            linear-gradient(var(--card-border) 1px, transparent 1px),
+            linear-gradient(90deg, var(--card-border) 1px, transparent 1px);
           background-size: 28px 28px;
           mask-image: radial-gradient(ellipse at center, black 40%, transparent 85%);
         }
         .ab-visual-grad {
           position: absolute; inset: 0;
-          background: linear-gradient(135deg, rgba(123,110,246,0.12), rgba(78,205,196,0.08), rgba(255,138,76,0.06));
+          background: linear-gradient(135deg, var(--orb-1), var(--orb-2), transparent);
         }
         .ab-visual-letter {
           position: absolute; inset: 0;
@@ -152,13 +152,13 @@ export default function About() {
           font-family: 'Space Grotesk', sans-serif;
           font-size: 140px;
           font-weight: 700;
-          background: linear-gradient(135deg, #7B6EF6 30%, #4ECDC4 70%, #FF8A4C);
+          background: linear-gradient(135deg, var(--accent-1) 30%, var(--accent-2) 70%, var(--accent-3));
           -webkit-background-clip: text;
           background-clip: text;
           color: transparent;
-          filter: drop-shadow(0 8px 30px rgba(123,110,246,0.25));
+          filter: drop-shadow(0 8px 30px var(--orb-1));
         }
-
+ 
         /* Text side */
         .ab-body {
           opacity: 0;
@@ -167,27 +167,27 @@ export default function About() {
         .ab-body p {
           font-size: 15px;
           line-height: 1.75;
-          color: rgba(234,234,240,0.65);
+          color: var(--text-secondary);
           margin: 0 0 18px;
         }
         .ab-body p:last-of-type { margin-bottom: 0; }
         .ab-highlight {
-          color: rgba(255,255,255,0.9);
+          color: var(--text-primary);
           font-weight: 500;
         }
         .ab-quote {
           position: relative;
           padding: 18px 22px;
           margin: 24px 0;
-          border-left: 2px solid rgba(123,110,246,0.5);
-          background: rgba(123,110,246,0.05);
+          border-left: 2px solid var(--accent-1);
+          background: var(--orb-1);
           border-radius: 0 12px 12px 0;
           font-style: italic;
-          color: rgba(234,234,240,0.75);
+          color: var(--text-secondary);
           font-size: 14.5px;
           line-height: 1.7;
         }
-
+ 
         /* Stats */
         .ab-resume-btn {
           display: inline-flex;
@@ -195,9 +195,9 @@ export default function About() {
           gap: 8px;
           padding: 0.65rem 1.5rem;
           border-radius: 10px;
-          background: rgba(123, 110, 246, 0.08);
-          border: 1px solid rgba(123, 110, 246, 0.35);
-          color: #fff;
+          background: var(--card-bg);
+          border: 1px solid var(--accent-1);
+          color: var(--text-primary);
           font-weight: 500;
           font-size: 0.88rem;
           text-decoration: none;
@@ -205,12 +205,12 @@ export default function About() {
           cursor: pointer;
         }
         .ab-resume-btn:hover {
-          background: rgba(123, 110, 246, 0.18);
-          border-color: rgba(123, 110, 246, 0.6);
+          background: color-mix(in srgb, var(--accent-1) 12%, transparent);
+          border-color: var(--accent-1);
           transform: translateY(-2px);
-          box-shadow: 0 8px 24px rgba(123, 110, 246, 0.25);
+          box-shadow: 0 8px 24px color-mix(in srgb, var(--accent-1) 25%, transparent);
         }
-
+ 
         .ab-stats {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
@@ -221,8 +221,8 @@ export default function About() {
           position: relative;
           padding: 20px 18px;
           border-radius: 14px;
-          background: rgba(255,255,255,0.032);
-          border: 1px solid rgba(255,255,255,0.07);
+          background: var(--card-bg);
+          border: 1px solid var(--card-border);
           overflow: hidden;
           transition: border-color .35s ease, box-shadow .35s ease, transform .25s ease;
           opacity: 0;
@@ -253,16 +253,16 @@ export default function About() {
           font-size: 11px;
           letter-spacing: 0.08em;
           text-transform: uppercase;
-          color: rgba(234,234,240,0.45);
+          color: var(--text-muted);
           margin: 0;
           position: relative; z-index: 1;
         }
-
+ 
         @keyframes abFadeUp {
           from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }
         }
-
+ 
         @media (max-width: 800px) {
           .ab-stats { grid-template-columns: repeat(2, 1fr); }
         }
