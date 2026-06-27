@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
+import { applyTheme, getAppliedThemeId, type ThemeId } from '../lib/themes';
 
-const themes = [
+const themes: { id: ThemeId; name: string; preview: string }[] = [
   { id: 'midnight', name: 'Midnight Purple', preview: 'linear-gradient(135deg, #7B6EF6, #E879F9)' },
   { id: 'cyberpunk', name: 'Cyberpunk', preview: 'linear-gradient(135deg, #ff0055, #00ffcc)' },
   { id: 'ocean', name: 'Ocean Breeze', preview: 'linear-gradient(135deg, #0ea5e9, #06b6d4)' },
@@ -16,7 +17,7 @@ const themes = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeTheme, setActiveTheme] = useState(() => localStorage.getItem('portfolio-theme') || 'midnight');
+  const [activeTheme, setActiveTheme] = useState<ThemeId>(() => getAppliedThemeId());
   const [showPicker, setShowPicker] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
@@ -24,10 +25,7 @@ export default function Navbar() {
   const bgAnimRef = useRef<number>(0);
 
   useEffect(() => {
-    const classes = document.documentElement.className.split(' ').filter(c => !c.startsWith('theme-'));
-    classes.push(`theme-${activeTheme}`);
-    document.documentElement.className = classes.join(' ').trim();
-    localStorage.setItem('portfolio-theme', activeTheme);
+    applyTheme(activeTheme);
   }, [activeTheme]);
 
   useEffect(() => {
