@@ -441,9 +441,16 @@ export default function Hero() {
           
 
           <h1 className="hero-h1">
-            <span className="hero-h1-line"><span className="hero-h1-inner">Building the Future</span></span>
-            <span className="hero-h1-line"><span className="hero-h1-inner hero-h1-grad">One Line of Code</span></span>
-            <span className="hero-h1-line"><span className="hero-h1-inner">at a Time</span></span>
+            <span className="hero-h1-line">
+            <span className="hero-h1-inner">Architecting Scalable</span>
+            </span>
+            <span className="hero-h1-line">
+              <span className="hero-h1-inner hero-h1-grad">Software Solutions</span>
+            </span>
+
+            <span className="hero-h1-line">
+              <span className="hero-h1-inner">Accelerated by AI</span>
+            </span>
           </h1>
 
           <div className="hero-typewriter-wrap">
