@@ -101,7 +101,13 @@ export default function Hero() {
   useEffect(() => {
     const el = twRef.current;
     if (!el) return;
-    const phrases = ['Software Developer', 'AI-First Engineer', 'Full Stack Developer', 'System Designer', 'React Native Developer'];
+    const phrases = [
+      'Scalable System Design',
+      'Cloud Deployment & DevOps',
+      'AI-Powered Product Development',
+      'Full-Stack Engineering',
+      'Performance-Driven Architecture',
+    ];    
     let pi = 0, ci = 0, deleting = false;
     let timer: ReturnType<typeof setTimeout>;
 
